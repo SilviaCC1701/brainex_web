@@ -1,5 +1,6 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
     const btnRegister = document.getElementById("btn_register");
+    const apiBaseUrl = $('meta[name="api-base-url"]').attr('content');
 
     btnRegister.addEventListener("click", function (e) {
         e.preventDefault(); // Evitar envío de formulario
@@ -16,7 +17,7 @@
         console.log({ nombre, nombreUsuario, email, password, confirmPassword });
 
         // Enviar al proxy por POST
-        fetch("https://localhost:32792/api/Usuarios/registro", {
+        fetch(`${apiBaseUrl}/api/Usuarios/registro`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
