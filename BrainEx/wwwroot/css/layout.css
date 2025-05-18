@@ -1,0 +1,204 @@
+﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+a {
+    color: #0077cc;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+/* *-* MODAL REGISTER/LOGIN STYLE *-* */
+/* === Modal personalizado con paleta === */
+#loginModal .modal-content {
+    background-color: #FAFAF7; /* Marfil suave */
+    border: 2px solid #DADADA; /* Gris claro neutro */
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+#loginModal .modal-header {
+    background-color: #9AB4C2; /* Azul suave grisáceo */
+    color: #404040; /* Gris ceniza */
+    border-bottom: 1px solid #B0B0B0; /* Gris claro */
+}
+
+#loginModal .modal-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+#loginModal .btn-close {
+    filter: invert(1); /* Botón de cerrar blanco */
+}
+
+/* === Tabs (Login / Registro) === */
+#authTab .nav-link {
+    color: #5D8AA8; /* Azul acero */
+    border: none;
+    background-color: transparent;
+    font-weight: 500;
+}
+
+    #authTab .nav-link.active {
+        background-color: #F4A896; /* Coral pálido */
+        color: white;
+        border-radius: 6px 6px 0 0;
+    }
+
+    #authTab .nav-link:hover {
+        background-color: #F5C1B0; /* Rojo salmón claro */
+        color: white;
+    }
+
+/* === Contenido de cada tab === */
+#login-tab-pane,
+#register-tab-pane {
+    background-color: #FAF9F6; /* Marfil cálido */
+    padding: 1rem;
+    border-radius: 0 0 8px 8px;
+    border: 1px solid #DADADA;
+    border-top: none;
+}
+
+/* === Inputs y botones === */
+#loginModal .form-control {
+    border: 1px solid #B0B0B0; /* Gris claro */
+    border-radius: 4px;
+}
+
+    #loginModal .form-control:focus {
+        border-color: #77C3B1; /* Verde jade */
+        box-shadow: 0 0 0 0.15rem rgba(119, 195, 177, 0.4);
+    }
+
+#loginModal button[type="submit"] {
+    background-color: #F4A896; /* Coral pálido */
+    border-color: #F4A896;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+    #loginModal button[type="submit"]:hover {
+        background-color: #F5C1B0; /* Rojo salmón claro */
+        border-color: #F5C1B0;
+    }
+
+
+/* *-* HOME STYLE *-* */
+:root {
+    --verde-jade: #77C3B1;
+    --coral-palido: #F4A896;
+    --gris-ceniza: #404040;
+    --marfil-calido: #FAF9F6;
+    --amarillo-vainilla: #FFF3B0;
+    --azul-grisaceo: #9AB4C2;
+    --gris-claro: #DADADA;
+    --rojo-salmon: #F5C1B0;
+}
+
+.vista-home .top-icons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 1rem 2rem 0 0;
+}
+
+.vista-home .icon-btn {
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .icon-btn:hover {
+        background-color: var(--gris-claro);
+    }
+
+/* === Título centrado === */
+.vista-home .page-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 2rem 0;
+}
+
+/* === Contenedor de tarjetas === */
+.vista-home .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+/* === Estilo de tarjeta === */
+.vista-home .card {
+    background-color: var(--verde-jade);
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 200px;
+    text-align: center;
+}
+
+/* === Imagen dentro de la tarjeta === */
+.vista-home .card-img {
+    background-color: var(--gris-claro);
+    height: 100px;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+/* === Botón de tarjeta === */
+.vista-home .btn-secondary {
+    background-color: var(--coral-palido);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.vista-home .btn-secondary:hover {
+    background-color: var(--rojo-salmon);
+}

@@ -1,0 +1,124 @@
+﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container-fluid">
+
+        <!-- Cambiar por un logo pequeño -->
+        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BrainEx</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav ms-auto">
+                <!--li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li-->
+                <!--li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login" title="Iniciar sesión">👤</a>
+                </li-->
+
+                <!-- Botón para IniciarSesión o Registrarse -->
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#" data-bs-toggle="modal" data-bs-target="#loginModal" title="Iniciar sesión">👤</a>
+                </li>
+
+
+                <!-- Botón toggle menú lateral derecho -->
+                <li class="nav-item">
+                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasMenu" aria-controls="offcanvasMenu">
+                        ☰
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Menú lateral derecho -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasMenu" aria-labelledby="offcanvasMenuLabel">
+    <div class="offcanvas-header">
+        <h5 id="offcanvasMenuLabel">Menú</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Home" asp-action="Index">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Home" asp-action="Privacy">Privacidad</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modal de InicioSesión y Registro -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Bienvenido</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs mb-3" id="authTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login-tab-pane" type="button" role="tab" aria-controls="login-tab-pane" aria-selected="true">Iniciar Sesión</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register-tab-pane" type="button" role="tab" aria-controls="register-tab-pane" aria-selected="false">Registrarse</button>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content" id="authTabContent">
+                    <!-- Login -->
+                    <div class="tab-pane fade show active" id="login-tab-pane" role="tabpanel" aria-labelledby="login-tab">
+                        <form method="post" asp-controller="Account" asp-action="Login">
+                            <div class="mb-3">
+                                <label for="loginEmail" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" id="loginEmail" name="Email" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="loginPassword" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="loginPassword" name="Password" required />
+                            </div>
+                            <button type="submit" class="btn btn-primary">Entrar</button>
+                        </form>
+                    </div>
+
+                    <!-- Registro -->
+                    <div class="tab-pane fade" id="register-tab-pane" role="tabpanel" aria-labelledby="register-tab">
+                        <form method="post" asp-controller="Account" asp-action="Register">
+                            <div class="mb-3">
+                                <label for="registerNombre" class="form-label">Nombre completo</label>
+                                <input type="text" class="form-control" id="registerNombre" name="Nombre" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="registerNombreUsuario" class="form-label">Nombre de usuario</label>
+                                <input type="text" class="form-control" id="registerNombreUsuario" name="NombreUsuario" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="registerEmail" class="form-label">Correo electrónico</label>
+                                <input type="email" class="form-control" id="registerEmail" name="Email" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="registerPassword" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" id="registerPassword" name="Password" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
+                                <input type="password" class="form-control" id="confirmPassword" name="ConfirmPassword" required />
+                            </div>
+                            <button id="btn_register" type="submit" class="btn btn-success">Registrarse</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

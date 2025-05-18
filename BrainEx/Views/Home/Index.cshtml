@@ -1,0 +1,58 @@
+﻿@model IEnumerable<BrainEx.Models.User>
+
+@{
+    ViewData["Title"] = "Usuarios";
+}
+<div class="vista-home">
+    <h1 class="page-title">BrainEx</h1>
+
+    <section class="card-container">
+        <div class="card">
+            <div class="card-img">img (jpg, png, svg, etc)</div>
+            <button class="btn-secondary">CEC</button>
+        </div>
+        <div class="card">
+            <div class="card-img">img (jpg, png, svg, etc)</div>
+            <button class="btn-secondary">Juegos</button>
+        </div>
+        <div class="card">
+            <div class="card-img">img (jpg, png, svg, etc)</div>
+            <button class="btn-secondary">Explicación</button>
+        </div>
+    </section>
+
+</div>
+
+
+
+@*<div class="container mt-4">
+    <h2 class="mb-4">Lista de Usuarios</h2>
+
+    @if (!Model.Any())
+    {
+        <p>No se encontraron usuarios.</p>
+    }
+    else
+    {
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.Name</td>
+                        <td>@user.Email</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+*@
