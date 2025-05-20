@@ -1,0 +1,47 @@
+﻿#pattern-game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+#pattern-game .container {
+    text-align: center;
+    width: 100%;
+}
+
+#pattern-game .sequence {
+    font-size: 2.5rem;
+    margin: 20px 0;
+}
+
+#pattern-game #answer-input {
+    font-size: 2rem;
+    padding: 10px;
+    width: 100px;
+    text-align: center;
+}
+
+#pattern-game .hidden {
+    display: none;
+}
+
+#pattern-game #result-screen {
+    margin-top: 30px;
+}
+
+#pattern-game .countdown {
+    font-size: 6rem;
+    font-weight: bold;
+    text-align: center;
+    color: #444;
+    margin-top: 60px;
+}
+
+#pattern-game .start-screen {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 2rem;
+    color: #444;
+}

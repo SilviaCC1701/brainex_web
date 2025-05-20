@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div id="pattern-game">
+    <div id="start-screen" class="start-screen">
+        <h2>Presiona cualquier tecla para comenzar</h2>
+    </div>
+
+    <div id="countdown" class="countdown">3</div>
+
+    <div class="container hidden" id="game-container">
+        <div id="sequence-display" class="sequence"></div>
+
+        <div id="result-screen" class="hidden">
+            <h2>¡Finalizado!</h2>
+            <p>Puntos totales: <span id="total-points"></span></p>
+        </div>
+    </div>
+
+    <audio id="sound-correct" src="/sounds/correct.mp3" preload="auto"></audio>
+    <audio id="sound-end" src="/sounds/end.mp3" preload="auto"></audio>
+</div>

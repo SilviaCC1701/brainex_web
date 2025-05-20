@@ -1,0 +1,66 @@
+﻿#complete-operation-game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+#complete-operation-game .container {
+    text-align: center;
+    width: 100%;
+}
+
+#complete-operation-game .operation {
+    margin: 10px 0;
+}
+
+#complete-operation-game .small {
+    font-size: 1.5rem;
+    color: #777;
+}
+
+#complete-operation-game .large {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #333;
+}
+
+#complete-operation-game .current-line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+#complete-operation-game #answer-input {
+    font-size: 2.5rem;
+    padding: 10px;
+    width: 100px;
+    text-align: center;
+}
+
+#complete-operation-game .hidden {
+    display: none;
+}
+
+#complete-operation-game #result-screen {
+    margin-top: 30px;
+}
+
+#complete-operation-game .countdown {
+    font-size: 6rem;
+    font-weight: bold;
+    text-align: center;
+    color: #444;
+    margin-top: 60px;
+    transition: opacity 0.3s ease;
+}
+
+#complete-operation-game .start-screen {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 2rem;
+    color: #444;
+}
