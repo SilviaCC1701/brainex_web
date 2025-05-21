@@ -1,0 +1,199 @@
+﻿/* === ESTILOS COMPARTIDOS PARA TODOS LOS JUEGOS === */
+
+.game-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.game-wrapper .container {
+    text-align: center;
+    width: 100%;
+}
+
+.operation, .sequence {
+    margin: 10px 0;
+}
+
+.operation.small {
+    font-size: 1.5rem;
+    color: #777;
+}
+
+.operation.large,
+.sequence {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.current-line {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+input[type="text"] {
+    font-size: 2.5rem;
+    padding: 10px;
+    width: 100px;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+#result-screen {
+    margin-top: 30px;
+}
+
+.countdown {
+    font-size: 6rem;
+    font-weight: bold;
+    text-align: center;
+    color: #444;
+    margin-top: 60px;
+    transition: opacity 0.3s ease;
+}
+
+.start-screen {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 2rem;
+    color: #444;
+}
+
+.arrow {
+    font-size: 2rem;
+    margin: 0 10px;
+    color: #555;
+}
+
+.seq-num {
+    font-size: 2.2rem;
+    color: #222;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 15px;
+    justify-content: center;
+    margin: 30px auto;
+}
+
+.grid-cell {
+    width: 100px;
+    height: 100px;
+    background-color: #333;
+    border-radius: 12px;
+    font-size: 2rem;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.grid-cell.show {
+    background-color: #4CAF50;
+}
+
+.grid-cell.correct {
+    background-color: #2ecc71;
+}
+
+.grid-cell.wrong {
+    background-color: #e74c3c;
+}
+
+.grid-cell.hidden-number {
+    background-color: #222;
+}
+.grid-cell.wrong {
+    background-color: #e74c3c !important;
+}
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 150px);
+    grid-template-rows: repeat(2, 150px);
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.color-tile {
+    width: 150px;
+    height: 150px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.1s, opacity 0.2s;
+}
+
+.color-tile.active {
+    transform: scale(1.1);
+    opacity: 0.6;
+}
+
+.hanoi-pegs {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 180px; /* suficiente para evitar colisiones */
+    margin-top: 60px;
+}
+
+.peg {
+    width: 10px;
+    height: 250px;
+    background-color: #555;
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.peg::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    width: 160px; /* base ancha para acomodar disco grande */
+    height: 10px;
+    background-color: #333;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+}
+
+.disk {
+    height: 30px;
+    margin: 4px 0;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    font-weight: bold;
+    user-select: none;
+    transition: transform 0.2s;
+    box-sizing: border-box;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.disk.selected {
+    outline: 3px solid #000;
+    outline-offset: 2px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    transform: translateX(-50%) scale(1.05);
+}

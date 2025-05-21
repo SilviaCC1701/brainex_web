@@ -47,7 +47,18 @@ namespace BrainEx.Controllers
         {
             return View();
         }
-
+        public IActionResult SigueSecuencia()
+        {
+            return View();
+        }
+        public IActionResult MemoryGame()
+        {
+            return View();
+        }
+        public IActionResult TorreHanoi()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

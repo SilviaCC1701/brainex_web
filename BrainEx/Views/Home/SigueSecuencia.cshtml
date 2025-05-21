@@ -1,4 +1,4 @@
-﻿<div id="pattern-game" class="game-wrapper">
+﻿<div id="sequence-game" class="game-wrapper">
     <div id="start-screen" class="start-screen">
         <h2>Presiona cualquier tecla para comenzar</h2>
     </div>
@@ -6,14 +6,15 @@
     <div id="countdown" class="countdown">3</div>
 
     <div class="container hidden" id="game-container">
-        <div id="sequence-display" class="sequence"></div>
+        <div id="grid" class="grid-container"></div>
 
         <div id="result-screen" class="hidden">
             <h2>¡Finalizado!</h2>
-            <p>Puntos totales: <span id="total-points"></span></p>
+            <p>Secuencias correctas: <span id="score"></span></p>
         </div>
     </div>
 
     <audio id="sound-correct" src="/sounds/correct.mp3" preload="auto"></audio>
+    <audio id="sound-error" src="/sounds/error.mp3" preload="auto"></audio>
     <audio id="sound-end" src="/sounds/end.mp3" preload="auto"></audio>
 </div>

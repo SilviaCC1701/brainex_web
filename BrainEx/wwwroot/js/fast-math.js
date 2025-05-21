@@ -103,7 +103,6 @@
         }, 1000);
     }
 
-    // Esperar interacción del usuario
     function waitForStart() {
         function startGame() {
             document.removeEventListener('keydown', startGame);
