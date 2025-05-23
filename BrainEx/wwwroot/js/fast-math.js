@@ -21,6 +21,10 @@
     let startTime;
     let penalty = 0;
 
+    let attemptsPerOp = [];
+    let timesPerOp = [];
+    let opStartTime;
+
     function generateOperations(count = 20) {
         const ops = [];
         const signs = ['+', '-'];
@@ -47,16 +51,40 @@
         currOp.textContent = operations[index] + ' =';
         nextOp.textContent = operations[index + 1] || '';
         input.value = '';
+        attemptsPerOp[index] = 0;
+        opStartTime = performance.now();
     }
 
     function endGame() {
-        const timeElapsed = ((performance.now() - startTime) / 1000) + penalty;
+        const endTime = performance.now();
+        const timeElapsed = ((endTime - startTime) / 1000).toFixed(2);
         currOp.textContent = '';
         nextOp.textContent = '';
         input.style.display = 'none';
         resultScreen.classList.remove('hidden');
-        totalTimeDisplay.textContent = timeElapsed.toFixed(2);
+        totalTimeDisplay.textContent = timeElapsed;
         soundEnd.play();
+
+        // Estadísticas
+        const totalAttempts = attemptsPerOp.reduce((a, b) => a + b, 0);
+        const precision = operations.length > 0 ? ((operations.length / totalAttempts) * 100).toFixed(1) : '0';
+
+        const statsHTML = `
+            <p>Tiempo total: <strong>${timeElapsed} s</strong></p>
+            <p>Tiempo medio por operación: <strong>${(
+                timesPerOp.reduce((a, b) => a + b, 0) / timesPerOp.length / 1000
+            ).toFixed(2)} s</strong></p>
+            <p>Aciertos a la primera: <strong>${attemptsPerOp.filter(a => a === 1).length} / ${operations.length}</strong></p>
+            <p>Precisión total: <strong>${precision}%</strong></p>
+            <p>Fallos totales: <strong>${totalAttempts - operations.length}</strong></p>
+            <p>Intentos por operación:</p>
+            <ul style="text-align: left;">
+                ${attemptsPerOp
+                .map((attempts, i) => `<li>${operations[i]}: ${attempts - 1} fallos</li>`) // fallos = intentos - 1
+                .join('')}
+            </ul>
+        `;
+        resultScreen.insertAdjacentHTML('beforeend', statsHTML);
     }
 
     input.addEventListener('keydown', (e) => {
@@ -67,8 +95,12 @@
 
     input.addEventListener('input', () => {
         const currentResult = evaluate(operations[index]);
+        attemptsPerOp[index]++;
+
         if (parseInt(input.value) === currentResult) {
             soundCorrect.play();
+            const timeForOp = performance.now() - opStartTime;
+            timesPerOp.push(timeForOp);
             index++;
             if (index >= operations.length) {
                 endGame();
