@@ -19,7 +19,15 @@
 
                 <!-- Botón para IniciarSesión o Registrarse -->
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="#" data-bs-toggle="modal" data-bs-target="#loginModal" title="Iniciar sesión">👤</a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <span>Hola, @User.Identity.Name</span>
+                        <a href="/Cuenta/Logout">Cerrar sesión</a>
+                    }
+                    else
+                    {
+                        <a class="nav-link text-dark" href="#" data-bs-toggle="modal" data-bs-target="#loginModal" title="Iniciar sesión">👤</a>
+                    }
                 </li>
 
 
@@ -86,7 +94,7 @@
                                 <label for="loginPassword" class="form-label">Contraseña</label>
                                 <input type="password" class="form-control" id="loginPassword" name="Password" required />
                             </div>
-                            <button type="submit" class="btn btn-primary">Entrar</button>
+                            <button id="btn_login" type="submit" class="btn btn-primary">Entrar</button>
                         </form>
                     </div>
 

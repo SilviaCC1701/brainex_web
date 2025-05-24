@@ -40,4 +40,38 @@
                 alert("Hubo un error al registrar.");
             });
     });
+
+    const btnLogin = document.getElementById("btn_login");
+
+    btnLogin.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const email = document.getElementById("loginEmail").value;
+        const password = document.getElementById("loginPassword").value;
+
+        fetch("/Cuenta/Login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                usuario: email,
+                contrasena: password
+            })
+        })
+            .then(response => {
+                if (response.ok) {
+                    window.location.reload(); // Recarga para que aparezca como logueado
+                } else {
+                    return response.json().then(data => {
+                        alert(data.mensaje || "Login incorrecto");
+                    });
+                }
+            })
+            .catch(error => {
+                console.error("Error al iniciar sesión:", error);
+                alert("Hubo un error al iniciar sesión.");
+            });
+    });
+
 });
