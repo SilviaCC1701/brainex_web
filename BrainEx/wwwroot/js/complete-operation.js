@@ -19,7 +19,10 @@
     let operations = [];
     let index = 0;
     let points = 0;
-    let startTimestamp;
+    let startTime;
+    let opStartTime;
+    let attemptsPerOp = [];
+    let timesPerOp = [];
 
     function generateOperations(count = 20) {
         const ops = [];
@@ -61,7 +64,8 @@
 
         input = document.getElementById("answer-input");
         input.focus();
-        startTimestamp = performance.now();
+        opStartTime = performance.now();
+        attemptsPerOp[index] = 0;
 
         input.addEventListener('keydown', (e) => {
             if (!/^\d$/.test(e.key) && e.key !== "Backspace") {
@@ -74,9 +78,12 @@
             const correctAnswer = operations[index].answer;
 
             if (!isNaN(value)) {
-                const elapsed = (performance.now() - startTimestamp) / 1000;
+                attemptsPerOp[index]++;
+                const elapsed = (performance.now() - opStartTime);
+
                 if (value === correctAnswer) {
-                    points += elapsed <= 5 ? 2 : 1;
+                    points += elapsed <= 5000 ? 2 : 1;
+                    timesPerOp.push(elapsed);
                     soundCorrect.play();
                     index++;
                     if (index >= operations.length) {
@@ -99,6 +106,28 @@
         resultScreen.classList.remove('hidden');
         totalPointsDisplay.textContent = points;
         soundEnd.play();
+
+        const endTime = performance.now();
+        const totalTime = ((endTime - startTime) / 1000).toFixed(2);
+        const totalAttempts = attemptsPerOp.reduce((a, b) => a + b, 0);
+        const precision = operations.length > 0 ? ((operations.length / totalAttempts) * 100).toFixed(1) : '0';
+
+        const statsHTML = `
+            <p>Tiempo total: <strong>${totalTime} s</strong></p>
+            <p>Tiempo medio por operación: <strong>${(
+                timesPerOp.reduce((a, b) => a + b, 0) / timesPerOp.length / 1000
+            ).toFixed(2)} s</strong></p>
+            <p>Aciertos a la primera: <strong>${attemptsPerOp.filter(a => a === 1).length} / ${operations.length}</strong></p>
+            <p>Precisión total: <strong>${precision}%</strong></p>
+            <p>Fallos totales: <strong>${totalAttempts - operations.length}</strong></p>
+            <p>Fallos por operación:</p>
+            <ul style="text-align: left;">
+                ${attemptsPerOp
+                .map((attempts, i) => `<li>${operations[i].display}: ${attempts - 1} fallos</li>`) // fallos = intentos - 1
+                .join('')}
+            </ul>
+        `;
+        resultScreen.insertAdjacentHTML('beforeend', statsHTML);
     }
 
     function startCountdown() {
@@ -117,6 +146,7 @@
                 countdownEl.classList.add('hidden');
                 gameUI.classList.remove('hidden');
                 operations = generateOperations();
+                startTime = performance.now();
                 updateOperations();
             }
         }, 1000);

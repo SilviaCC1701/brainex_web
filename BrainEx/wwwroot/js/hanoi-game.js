@@ -10,6 +10,8 @@
 
     const totalDisks = 5;
     let selectedDisk = null;
+    let moveCount = 0;
+    let startTime;
 
     function setupGame() {
         const colors = ['#f44336', '#ff9800', '#ffeb3b', '#4caf50', '#2196f3'];
@@ -24,6 +26,8 @@
             disk.style.margin = '0 auto';
             pegs[0].prepend(disk);
         }
+        moveCount = 0;
+        startTime = performance.now();
     }
 
     function isTopDisk(disk) {
@@ -48,6 +52,7 @@
                 peg.appendChild(selectedDisk);
                 selectedDisk.classList.remove('selected');
                 selectedDisk = null;
+                moveCount++;
                 checkWin();
             }
         } else if (topDisk && topDisk.classList.contains('disk')) {
@@ -59,8 +64,15 @@
     }
 
     function checkWin() {
-        if (pegs[2].childElementCount === totalDisks) {
+        if (pegs[1].childElementCount === totalDisks || pegs[2].childElementCount === totalDisks) {
+            const totalTime = ((performance.now() - startTime) / 1000).toFixed(2);
             resultScreen.classList.remove('hidden');
+            resultScreen.innerHTML = `
+                <h2>¡Completado!</h2>
+                <p>¡Has resuelto la Torre de Hanoi!</p>
+                <p>Movimientos: <strong>${moveCount}</strong></p>
+                <p>Tiempo total: <strong>${totalTime} segundos</strong></p>
+            `;
         }
     }
 
