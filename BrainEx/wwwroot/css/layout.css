@@ -1,5 +1,29 @@
 ﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
+:root {
+    --blanco: #FFFFFF;
+    --negro_suave: #1E1E1E;
+    --azul_cielo: #6EB5FF;
+    --lavanda: #CFA1FF;
+    --verde_menta: #9FFFCB;
+    --amarillo: #FFE866;
+    --coral: #FF9E8D;
+    --gris_claro: #F0F0F0;
+
+    --azul_claro: #eaf4ff;
+    --lavanda_claro: #f1eaff;
+    --verde_claro: #e4fff1;
+
+    --azul_negro_oscuro: #29394d;
+
+    --marfil-calido: #FAF9F6;
+    --amarillo-vainilla: #FFF3B0;
+    --azul-grisaceo: #9AB4C2;
+    --gris-claro: #DADADA;
+    --rojo-salmon: #F5C1B0;
+}
+
+body { font-family: 'Nunito'; }
 
 a.navbar-brand {
     white-space: normal;
@@ -56,8 +80,8 @@ button.accept-policy {
 }
 
 #loginModal .modal-title {
-    font-weight: bold;
-    font-size: 1.25rem;
+    font-weight: bold; 
+    font-size: 1.25rem; 
 }
 
 #loginModal .btn-close {
@@ -118,31 +142,26 @@ button.accept-policy {
 
 
 /* *-*-*-*-* HOME STYLE *-*-*-*-* */
-:root {
-    --verde-jade: #77C3B1;
-    --coral-palido: #F4A896;
-    --gris-ceniza: #404040;
-    --marfil-calido: #FAF9F6;
-    --amarillo-vainilla: #FFF3B0;
-    --azul-grisaceo: #9AB4C2;
-    --gris-claro: #DADADA;
-    --rojo-salmon: #F5C1B0;
-}
-
 .vista-home .top-icons { display: flex; justify-content: flex-end; gap: 1rem; padding: 1rem 2rem 0 0; }
 .vista-home .icon-btn { background-color: white; border: none; border-radius: 8px; padding: 0.5rem; font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease; }
 .icon-btn:hover { background-color: var(--gris-claro); }
 /* === Título centrado === */
-.vista-home .page-title { text-align: center; font-size: 2.5rem; margin: 2rem 0; }
+.vista-home .page-title { text-align: center; font-size: 7rem; margin: 2.5rem 0; padding: 20px; color: var(--negro_suave); font-weight: bold; }
+.vista-home .page-title > span.titleEx { color: var(--amarillo); }
 /* === Contenedor de tarjetas === */
 .vista-home .card-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; padding: 2rem; }
 /* === Estilo de tarjeta === */
-.vista-home .card { background-color: var(--verde-jade); padding: 1rem; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 200px; text-align: center; }
+.vista-home .card { padding: 1rem; border: 0; border-radius: 12px; /*box-shadow: 0 4px 8px rgba(0,0,0,0.1);*/ width: 200px; text-align: center; }
+.vista-home .card.calcBrainAge { background-color: var(--azul_claro); }
+.vista-home .card.juegos { background-color: var(--lavanda_claro); }
+.vista-home .card.explicacion { background-color: var(--verde_claro); }
 /* === Imagen dentro de la tarjeta === */
-.vista-home .card-img { background-color: var(--gris-claro); height: 100px; margin-bottom: 1rem; display: flex; justify-content: center; align-items: center; border-radius: 8px; font-size: 0.9rem; }
+.vista-home .card-img { /*background-color: var(--gris-claro);*/ height: 100px; margin-bottom: 1rem; display: flex; justify-content: center; align-items: center; border-radius: 8px; font-size: 0.9rem; }
 /* === Botón de tarjeta === */
-.vista-home .btn-secondary { background-color: var(--coral-palido); border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; color: white; font-weight: bold; transition: background-color 0.3s ease; text-decoration: none; }
-.vista-home .btn-secondary:hover { background-color: var(--rojo-salmon); }
+.vista-home .btn-secondary { background-color: var(--coral-palido); border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; color: var(--negro_suave); font-weight: 600; transition: background-color 0.3s ease; text-decoration: none; }
+.vista-home .card.calcBrainAge .btn-secondary:hover { background-color: var(--azul_cielo); }
+.vista-home .card.juegos .btn-secondary:hover { background-color: var(--lavanda); }
+.vista-home .card.explicacion .btn-secondary:hover { background-color: var(--verde_menta); }
 
 /* *-*-*-*-* JUEGOS STYLE *-*-*-*-* */
 .vista-lista-juegos { max-width: 800px; margin-left:18%; } /* Temporal a mejorar */
