@@ -10,6 +10,7 @@ for details on configuring this project to bundle and minify static web assets. 
     --coral: #FF9E8D;
     --gris_claro: #F0F0F0;
 
+    --azul-marino: #1E1E1E;
     --azul_claro: #eaf4ff;
     --lavanda_claro: #f1eaff;
     --verde_claro: #e4fff1;
@@ -151,7 +152,8 @@ button.accept-policy {
 /* === Contenedor de tarjetas === */
 .vista-home .card-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; padding: 2rem; }
 /* === Estilo de tarjeta === */
-.vista-home .card { padding: 1rem; border: 0; border-radius: 12px; /*box-shadow: 0 4px 8px rgba(0,0,0,0.1);*/ width: 200px; text-align: center; }
+.vista-home .card { padding: 1rem; border: 0; border-radius: 12px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); width: 200px; text-align: center; height: 250px; justify-content: space-evenly; }
+.vista-home .card:hover { transform: translateY(-5px); }
 .vista-home .card.calcBrainAge { background-color: var(--azul_claro); }
 .vista-home .card.juegos { background-color: var(--lavanda_claro); }
 .vista-home .card.explicacion { background-color: var(--verde_claro); }
@@ -163,6 +165,9 @@ button.accept-policy {
 .vista-home .card.calcBrainAge .btn-secondary:hover { background-color: var(--azul_cielo); }
 .vista-home .card.juegos .btn-secondary:hover { background-color: var(--lavanda); }
 .vista-home .card.explicacion .btn-secondary:hover { background-color: var(--verde_menta); }
+/* === Botón de grupo-enlaces === */
+.vista-home .grupo-enlaces { display: flex; justify-content: center; gap: 50px; }
+.vista-home .grupo-enlaces .btn-secondary{ background-color: var(--azul-marino); color: var(--blanco) ;border: none; border-radius: 0.5rem; padding: 0.6rem 1.2rem; font-size: 1rem; cursor: pointer; transition: filter 0.3s;}
 
 /* *-*-*-*-* JUEGOS STYLE *-*-*-*-* */
 .vista-lista-juegos { max-width: 800px; margin-left:18%; } /* Temporal a mejorar */
