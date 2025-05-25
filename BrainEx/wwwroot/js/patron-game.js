@@ -46,7 +46,10 @@
                         next = seq[i - 1] * step;
                         break;
                 }
-                if (!valid || next > 999) break;
+                if (!valid || next > 99) {
+                    valid == false;
+                    break;
+                }
                 seq.push(next);
             }
 
