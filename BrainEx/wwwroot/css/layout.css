@@ -157,6 +157,7 @@ button.accept-policy {
 .vista-home .card.calcBrainAge { background-color: var(--azul_claro); }
 .vista-home .card.juegos { background-color: var(--lavanda_claro); }
 .vista-home .card.explicacion { background-color: var(--verde_claro); }
+.vista-home .btn-secondary:focus { box-shadow: none; }
 /* === Imagen dentro de la tarjeta === */
 .vista-home .card-img { padding: 1rem 0rem 0rem; height: 100px; margin-bottom: 1rem; display: flex; justify-content: center; align-items: center; border-radius: 8px; font-size: 0.9rem; }
 .vista-home .card-img img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
@@ -184,6 +185,7 @@ button.accept-policy {
 /* === Botón de tarjeta === */
 .vista-lista-juegos .btn-secondary { background-color: var(--coral-palido); border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; color: white; font-weight: bold; transition: background-color 0.3s ease; text-decoration: none; }
 .vista-lista-juegos .btn-secondary:hover { background-color: var(--rojo-salmon); }
+.vista-lista-juegos .btn-secondary:focus { box-shadow: none; }
 
 
 
