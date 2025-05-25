@@ -152,7 +152,7 @@ button.accept-policy {
 /* === Contenedor de tarjetas === */
 .vista-home .card-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; padding: 2rem; }
 /* === Estilo de tarjeta === */
-.vista-home .card { padding: 1rem; border: 0; border-radius: 12px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); width: 200px; text-align: center; height: 250px; justify-content: space-evenly; }
+.vista-home .card { padding: 1rem; border: 0; border-radius: 12px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); width: 250px; text-align: center; height: 250px; justify-content: space-evenly; }
 .vista-home .card:hover { transform: translateY(-5px); }
 .vista-home .card.calcBrainAge { background-color: var(--azul_claro); }
 .vista-home .card.juegos { background-color: var(--lavanda_claro); }
@@ -161,7 +161,7 @@ button.accept-policy {
 .vista-home .card-img { padding: 1rem 0rem 0rem; height: 100px; margin-bottom: 1rem; display: flex; justify-content: center; align-items: center; border-radius: 8px; font-size: 0.9rem; }
 .vista-home .card-img img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; }
 /* === Botón de tarjeta === */
-.vista-home .btn-secondary { background-color: var(--coral-palido); border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; color: var(--negro_suave); font-weight: 600; transition: background-color 0.3s ease; text-decoration: none; }
+.vista-home .btn-secondary { background-color: var(--coral-palido); border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; color: var(--negro_suave); font-weight: 600; transition: background-color 0.3s ease; text-decoration: none; font-size: 1.5rem; }
 .vista-home .card.calcBrainAge .btn-secondary:hover { background-color: var(--azul_cielo); }
 .vista-home .card.juegos .btn-secondary:hover { background-color: var(--lavanda); }
 .vista-home .card.explicacion .btn-secondary:hover { background-color: var(--verde_menta); }
