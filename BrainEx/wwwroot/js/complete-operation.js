@@ -211,9 +211,12 @@
         });
 
         const payload = {
-            operations: operations.map(op => op.display),
-            attemptsPerOp,
-            timesPerOp: timesPerOp.map(t => +(t / 1000).toFixed(3))
+            game: "completa-operacion",
+            data: {
+                operations: operations.map(op => op.display),
+                attemptsPerOp,
+                timesPerOp: timesPerOp.map(t => +(t / 1000).toFixed(3))
+            }
         };
 
         fetch('/juegos/enviardatos', {
