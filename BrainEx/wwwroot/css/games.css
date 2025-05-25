@@ -197,3 +197,39 @@ input[type="text"] {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
     transform: translateX(-50%) scale(1.05);
 }
+.stats-summary {
+    background-color: #f8f8f8;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin-inline: auto;
+}
+
+.stats-details {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    max-width: 700px;
+    margin-inline: auto;
+}
+
+.stats-details ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.stats-details li {
+    margin-bottom: 8px;
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 6px;
+}
+
+canvas {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+}

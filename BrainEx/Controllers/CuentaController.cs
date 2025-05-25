@@ -25,7 +25,8 @@ namespace BrainEx.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, result.Usuario.Usuario),
-                new Claim(ClaimTypes.Email, result.Usuario.Email)
+                new Claim(ClaimTypes.Email, result.Usuario.Email),
+                new Claim(ClaimTypes.NameIdentifier, result.Usuario.Guid.ToString())
             };
 
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -53,6 +54,7 @@ namespace BrainEx.Controllers
     public class UsuarioDTO
     {
         public string Nombre { get; set; }
+        public Guid Guid { get; set; }
         public string Usuario { get; set; }
         public string Email { get; set; }
     }
