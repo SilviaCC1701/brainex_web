@@ -15,26 +15,32 @@ namespace BrainEx.Controllers
         }
         public IActionResult CalculoRapido()
         {
+            ViewData["Contexto"] = "Juegos";
             return View();
         }
         public IActionResult CompletaOperacion()
         {
+            ViewData["Contexto"] = "Juegos";
             return View();
         }
         public IActionResult EncuentraPatron()
         {
+            ViewData["Contexto"] = "Juegos";
             return View();
         }
         public IActionResult MemoryGame()
         {
+            ViewData["Contexto"] = "Juegos";
             return View();
         }
         public IActionResult SigueSecuencia()
         {
+            ViewData["Contexto"] = "Juegos";
             return View();
         }
         public IActionResult TorreHanoi()
         {
+            ViewData["Contexto"] = "Juegos";
             return View();
         }
 
