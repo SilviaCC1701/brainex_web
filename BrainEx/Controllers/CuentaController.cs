@@ -17,11 +17,7 @@ namespace BrainEx.Controllers
 
             if (!response.IsSuccessStatusCode)
                 return Unauthorized(new { mensaje = "Usuario o contraseña incorrectos" });
-
-            // Extrae info del usuario desde la API
             var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
-
-            // Crea la cookie de sesión
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, result.Usuario.Usuario),
@@ -36,6 +32,27 @@ namespace BrainEx.Controllers
 
             return Ok();
         }
+        [HttpPost]
+        public async Task<IActionResult> Registro([FromBody] UsuarioRegistro usuario)
+        {
+            using var httpClient = new HttpClient();
+            string proxyUrl = Environment.GetEnvironmentVariable("ApiBaseUrl");
+            var response = await httpClient.PostAsJsonAsync($"{proxyUrl}/api/usuarios/registro", usuario);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var error = await response.Content.ReadFromJsonAsync<Dictionary<string, object>>();
+                return BadRequest(error);
+            }
+            var login = new UsuarioLogin
+            {
+                Usuario = usuario.Usuario,
+                Contrasena = usuario.Contrasena
+            };
+
+            return await Login(login);
+        }
+
 
         public async Task<IActionResult> Logout()
         {

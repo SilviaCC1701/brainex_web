@@ -29,15 +29,25 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 body { font-family: 'Nunito'; }
+
 a { color: #0077cc; }
+
 nav.navbar { box-shadow: none; box-shadow: none !important; border: none !important; border-bottom: 0 !important;}
+
 a.navbar-brand { white-space: normal; text-align: center; word-break: break-all; }
+
 a.navbar-brand img { height: 40px; width: auto; max-height: 100%; object-fit: contain;}
+
 .btn-primary { color: #fff; background-color: #1b6ec2; border-color: #1861ac; }
+
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link { color: #fff; background-color: #1b6ec2; border-color: #1861ac; }
+
 .border-top { border-top: 1px solid #e5e5e5; }
+
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
+
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
 button.accept-policy { font-size: 1rem; line-height: inherit; }
 
 /* *-* MODAL REGISTER/LOGIN STYLE *-* */
@@ -117,6 +127,7 @@ button.accept-policy { font-size: 1rem; line-height: inherit; }
     }
 
 
+
 /* *-*-*-*-* HOME STYLE *-*-*-*-* */
 .vista-home .top-icons { display: flex; justify-content: flex-end; gap: 1rem; padding: 1rem 2rem 0 0; }
 .vista-home .icon-btn { background-color: white; border: none; border-radius: 8px; padding: 0.5rem; font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s ease; }
@@ -145,6 +156,8 @@ button.accept-policy { font-size: 1rem; line-height: inherit; }
 .vista-home .grupo-enlaces { display: flex; justify-content: center; gap: 50px; }
 .vista-home .grupo-enlaces .btn-secondary{ background-color: var(--azul-marino); color: var(--blanco) ;border: none; border-radius: 0.5rem; padding: 0.6rem 1.2rem; font-size: 1.25rem; cursor: pointer; transition: filter 0.3s;}
 
+
+
 /* *-*-*-*-* JUEGOS STYLE *-*-*-*-* */
 .vista-lista-juegos { max-width: 900px; display: flex; justify-content: center; margin: 0 auto; }
 .vista-lista-juegos .top-icons { display: flex; justify-content: flex-end; gap: 1rem; padding: 1rem 2rem 0 0; }
@@ -152,8 +165,9 @@ button.accept-policy { font-size: 1rem; line-height: inherit; }
 /* === Título centrado === */
 h2#titleJuegos { font-weight: bold; text-align: center; font-size: xxx-large; }
 span.addLavandaColor { color: var(--lavanda); }
+span.addAzulColor { color: var(--azul_cielo); }
 /* === Contenedor de tarjetas === */
-.vista-lista-juegos .card-container { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem; padding: 2rem; }
+.vista-lista-juegos .card-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; padding: 2rem; }
 /* === Estilo de tarjeta Juegos === */
 .vista-lista-juegos .card { padding: 1rem; border: 0; border-radius: 12px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); width: 250px; text-align: center; height: 250px; justify-content: space-evenly; }
 .vista-lista-juegos .card:hover { transform: translateY(-5px); }
@@ -176,3 +190,29 @@ span.addLavandaColor { color: var(--lavanda); }
 .vista-lista-juegos .card.keepSequence .btn-secondary:hover { background-color: var(--coral); }
 .vista-lista-juegos .card.hanoiTower .btn-secondary:hover { background-color: var(--verde_menta); }
 
+
+
+/* *-*-*-*-* CEC STYLE *-*-*-*-* */
+/* === Título centrado === */
+.vista-cec h2#titleCEC { font-weight: bold; text-align: center; font-size: 80px; margin: auto; max-width: 550px; margin-bottom: 30px; }
+.vista-cec .page-title { text-align: center; margin: 2.5rem 0; margin-bottom: 0.5rem; }
+.vista-cec .page-title img { max-width: 100%; max-height: 100%; height: 175px; width: auto; object-fit: contain; }
+
+/* === Botón de grupo-enlaces === */
+.vista-cec .grupo-enlaces { display: flex; justify-content: space-evenly; flex-direction: column; flex-wrap: nowrap; align-items: center; }
+.vista-cec .grupo-enlaces .btn-secondary { box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); background-color: var(--amarillo); color: var(--negro); border: none; border-radius: 0.5rem; padding: 0.6rem 2.5rem; font-size: 2.60rem; cursor: pointer; transition: filter 0.3s; text-decoration: none; font-weight: bold; max-width: 1500px; text-align: center; }
+.vista-cec p.descripcion { padding: 20px; font-size: xx-large; font-weight: bold; max-width: 650px; text-align: center; }
+.vista-cec .grupo-enlaces .btn-secondary:hover { transform: translateY(-5px); }
+/* === Grupo Figuritas === */
+.figurasCSS { display: flex; justify-content: space-evenly; gap: 1.2rem; flex-direction: row; flex-wrap: wrap; align-content: center; align-items: center; }
+.figurita { width: 40px; height: 40px; display: inline-block; background: transparent; }
+.circuloAzul { border: 6px solid var(--azul_cielo); border-radius: 50%; }
+.circuloAzul.relleno { background-color: var(--amarillo); border: none; }
+.cuadradoVerde { border: 6px solid var(--verde_menta); border-radius: 8px; }
+.cuadradoVerde.relleno { background-color: var(--coral); border: none; border-radius: 8px; }
+.trianguloLavanda { position: relative; background-color: var(--lavanda); text-align: left; transform: rotate(-60deg) skewX(-30deg) scale(1,.866); }
+.trianguloLavanda:before, .trianguloLavanda:after { content: ''; position: absolute; background-color: inherit; }
+.trianguloLavanda, .trianguloLavanda:before, .trianguloLavanda:after { width: 25px; height: 25px; border-top-right-radius: 30%; }
+.trianguloLavanda:before { transform: rotate(-135deg) skewX(-45deg) scale(1.414,.707) translate(0,-50%); }
+.trianguloLavanda:after { transform: rotate(135deg) skewY(-45deg) scale(.707,1.414) translate(50%); }
+.triangleLavanda { width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-bottom: 34px solid var(--lavanda); border-bottom-left-radius: 6px; border-bottom-right-radius: 6px; background: transparent; }
