@@ -1,4 +1,9 @@
-﻿<div id="pattern-game" class="game-wrapper">
+﻿@{
+    var contexto = ViewData["Contexto"]?.ToString() ?? "Juegos";
+    var gameId = contexto == "Juegos" ? "pattern-game" : "pattern-game-cec";
+    var esJuegos = contexto == "Juegos";
+}
+<div id="@gameId" class="game-wrapper">
     <div id="start-screen" class="start-screen">
         <h2>Presiona cualquier tecla para comenzar</h2>
     </div>
@@ -10,7 +15,14 @@
 
         <div id="result-screen" class="hidden">
             <h2>¡Finalizado!</h2>
-            <div id="result-stats" class="stats-container"></div>
+            @if (esJuegos)
+            {
+                <div id="result-stats" class="stats-container"></div>
+            }
+            else
+            {
+                <button id="next-game-btn" class="next-button" onclick="location.href='/CalcBrainAge/MemoryGame'">Siguiente juego</button>
+            }
         </div>
     </div>
 
@@ -18,3 +30,23 @@
     <audio id="sound-correct" src="/sounds/correct.mp3" preload="auto"></audio>
     <audio id="sound-end" src="/sounds/end.mp3" preload="auto"></audio>
 </div>
+
+@if (!esJuegos)
+{
+    <style>
+        .next-button {
+            font-size: 2rem;
+            padding: 1rem 2rem;
+            margin-top: 3rem;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+            .next-button:hover {
+                background-color: #388e3c;
+            }
+    </style>
+}

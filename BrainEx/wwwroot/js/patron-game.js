@@ -236,8 +236,8 @@
             body: JSON.stringify(payload)
         })
             .then(res => res.ok ? res.text() : Promise.reject(res.statusText))
-            .then(msg => console.log('✅ Datos enviados al servidor:', msg))
-            .catch(err => console.error('❌ Error al enviar datos:', err));
+            .then(msg => console.log('Datos enviados al servidor:', msg))
+            .catch(err => console.error('Error al enviar datos:', err));
     }
 
     function startCountdown() {

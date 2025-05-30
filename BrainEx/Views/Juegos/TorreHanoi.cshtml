@@ -1,4 +1,9 @@
-﻿<div id="hanoi-game" class="game-wrapper">
+﻿@{
+    var contexto = ViewData["Contexto"]?.ToString() ?? "Juegos";
+    var esJuegos = contexto == "Juegos";
+    var gameId = esJuegos ? "hanoi-game" : "hanoi-game-cec";
+}
+<div id="@gameId" class="game-wrapper">
     <div id="start-screen" class="start-screen">
         <h2>Presiona cualquier tecla para comenzar</h2>
     </div>
@@ -15,6 +20,29 @@
         <div id="result-screen" class="hidden">
             <h2>¡Completado!</h2>
             <p>¡Has resuelto la Torre de Hanoi!</p>
+            @if (!esJuegos)
+            {
+                <button id="next-game-btn" class="next-button" onclick="window.location.href='/CalcBrainAge/Resultados'">Ver resultados</button>
+            }
         </div>
     </div>
 </div>
+@if (!esJuegos)
+{
+    <style>
+        .next-button {
+            font-size: 2rem;
+            padding: 1rem 2rem;
+            margin-top: 2rem;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+            .next-button:hover {
+                background-color: #388e3c;
+            }
+    </style>
+}

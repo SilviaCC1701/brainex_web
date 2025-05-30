@@ -29,7 +29,7 @@
     let timesPerOp = [];
     let opStartTime;
 
-    function generateOperations(count = 10) {
+    function generateOperations(count = 5) {
         const ops = [];
         const signs = ['+', '-'];
         for (let i = 0; i < count; i++) {

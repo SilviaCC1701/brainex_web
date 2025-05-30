@@ -1,4 +1,9 @@
-﻿<div id="color-memory-game" class="game-wrapper">
+﻿@{
+    var contexto = ViewData["Contexto"]?.ToString() ?? "Juegos";
+    var gameId = contexto == "Juegos" ? "color-memory-game" : "color-memory-game-cec";
+    var esJuegos = contexto == "Juegos";
+}
+<div id="@gameId" class="game-wrapper">
     <div id="start-screen" class="start-screen">
         <h2>Presiona cualquier tecla para comenzar</h2>
     </div>
@@ -15,7 +20,14 @@
 
         <div id="result-screen" class="hidden">
             <h2>¡Finalizado!</h2>
-            <p>Secuencia máxima alcanzada: <span id="color-score"></span></p>
+            @if (esJuegos)
+            {
+                <p>Secuencia máxima alcanzada: <span id="color-score"></span></p>
+            }
+            else
+            {
+                <button id="next-game-btn" class="next-button" onclick="location.href='/CalcBrainAge/CompletaOperacion'">Siguiente juego</button>
+            }
         </div>
     </div>
 
@@ -24,3 +36,23 @@
     <audio id="sound-error" src="/sounds/error.mp3" preload="auto"></audio>
     <audio id="sound-end" src="/sounds/end.mp3" preload="auto"></audio>
 </div>
+
+@if (!esJuegos)
+{
+    <style>
+        .next-button {
+            font-size: 2rem;
+            padding: 1rem 2rem;
+            margin-top: 3rem;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+            .next-button:hover {
+                background-color: #388e3c;
+            }
+    </style>
+}
