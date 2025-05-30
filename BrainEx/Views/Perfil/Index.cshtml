@@ -1,6 +1,54 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-
+﻿@{
+	ViewData["Title"] = "Perfil de Usuario";
 }
+
+<div class="vista-perfil">
+	<div class="apartado-info">
+		<div class="datos-basic">
+			<h2 class="title-page">Perfil de Usuario</h2>
+			<p class="dato">Nombre completo: <span class="dato-fullname">Silvia Condori</span></p>
+			<p class="dato">Nombre usuario: <span class="dato-username">scondori</span></p>
+			<p class="dato">Email: <span class="dato-email">scondoric@email.com</span></p>
+		</div>
+		<div class="datos-dcha">
+			<p class="dato">Edad Cerebral</p>
+			<span class="dato-edad">25</span>
+		</div>
+	</div>
+	<div class="container-partidas">
+		<h3 class="title-second">Partidad</h3>
+		<table>
+			<thead>
+				<tr>
+					<th>Fecha</th>
+					<th>Tipo Partida</th>
+					<th>Tiempo</th>
+					<th>Puntuación</th>
+					<th colspan="2">Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>24-04-2024</td>
+					<td>Calculo Cerebral</td>
+					<td>10:00</td>
+					<td>730</td>
+					<td class="celda-acciones">
+						<a class="btn-secondary details" href="">Detalles</a>
+						<a class="btn-secondary delete">Borrar</a>
+					</td>
+				</tr>
+				<tr>
+					<td>24-04-2024</td>
+					<td>Completa Operación</td>
+					<td>10:00</td>
+					<td>730</td>
+					<td class="celda-acciones">
+						<a class="btn-secondary details" href="">Detalles</a>
+						<a class="btn-secondary delete">Borrar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
