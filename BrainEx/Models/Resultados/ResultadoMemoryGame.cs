@@ -4,6 +4,7 @@ namespace BrainEx.Models.Resultados
 {
     public class ResultadoMemoryGame
     {
+        public ResultadoMemoryGame() { }
         public double TiempoTotal { get; set; }
         public double TiempoMedio { get; set; }
         public int TotalFases { get; set; }

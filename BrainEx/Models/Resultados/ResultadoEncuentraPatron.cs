@@ -4,6 +4,7 @@ namespace BrainEx.Models.Resultados
 {
     public class ResultadoEncuentraPatron
     {
+        public ResultadoEncuentraPatron() { }
         public double TiempoTotal { get; set; }
         public double TiempoMedio { get; set; }
         public int TotalSecuencias { get; set; }

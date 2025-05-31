@@ -4,6 +4,7 @@ namespace BrainEx.Models.Resultados
 {
     public class ResultadoCompletaOperacion
     {
+        public ResultadoCompletaOperacion() { }
         public double TiempoTotal { get; set; }
         public double TiempoMedio { get; set; }
         public int TotalOperaciones { get; set; }

@@ -72,7 +72,7 @@ namespace BrainEx.Controllers
             //    return RedirectToAction("Index", "Perfil");
             //}
             var underscoreIndex = PartidaID.IndexOf('_'); 
-            var tipo = PartidaID.Substring(underscoreIndex + 1);
+            var tipoPartida = PartidaID.Substring(underscoreIndex + 1);
 
             object? resultadoModelo = null;
             switch (tipoPartida)

@@ -4,6 +4,7 @@ namespace BrainEx.Models.Resultados
 {
     public class ResultadoCalculoRapido
     {
+        public ResultadoCalculoRapido() { }
         public double TiempoTotal { get; set; }
         public double TiempoMedio { get; set; }
         public int TotalOperaciones { get; set; }
