@@ -1,4 +1,5 @@
-﻿@{
+﻿@model BrainEx.Models.UsuarioDatosPerfil
+@{
 	ViewData["Title"] = "Perfil de Usuario";
 
 }
@@ -7,9 +8,9 @@
 	<div class="apartado-info">
 		<div class="datos-basic">
 			<h2 class="title-page">Perfil de Usuario</h2>
-			<p class="dato">Nombre completo: <span class="dato-fullname">Silvia Condori</span></p>
-			<p class="dato">Nombre usuario: <span class="dato-username">scondori</span></p>
-			<p class="dato">Email: <span class="dato-email">scondoric@email.com</span></p>
+			<p class="dato">Nombre completo: <span class="dato-fullname">@Model.Usuario.Name</span></p>
+			<p class="dato">Nombre usuario: <span class="dato-username">@Model.Usuario.UserName</span></p>
+			<p class="dato">Email: <span class="dato-email">@Model.Usuario.Email</span></p>
 		</div>
 		<div class="datos-dcha">
 			<p class="dato">Edad Cerebral</p>
@@ -24,32 +25,41 @@
 					<th>Fecha</th>
 					<th>Tipo Partida</th>
 					<th>Tiempo</th>
-					<th>Puntuación</th>
-					<th colspan="2">Acciones</th>
+					<th>Acciones</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>24-04-2024</td>
-					<td>Calculo Cerebral</td>
-					<td>10:00</td>
-					<td>730</td>
-					<td class="celda-acciones">
-						<a class="btn-secondary details" href="">Detalles</a>
-						<a class="btn-secondary delete">Borrar</a>
-					</td>
-				</tr>
-				<tr>
-					<td>24-04-2024</td>
-					<td>Completa Operación</td>
-					<td>10:00</td>
-					<td>730</td>
-					<td class="celda-acciones">
-						<a class="btn-secondary details" href="">Detalles</a>
-						<a class="btn-secondary delete">Borrar</a>
-					</td>
-				</tr>
+				@foreach (PartidaItem partida in Model.Partidas)
+				{
+					<tr class="info-partida" data-item="@($"{partida.Tipo}_{partida.Id}")">
+						<td>@partida.Fecha.ToString("dd-MM-yyyy")</td>
+						<td>@FormatearTipo(partida.Tipo)</td>
+						<td>@partida.Segundos sg</td>
+						<td class="celda-acciones">
+							<a class="btn-secondary details" href="./Perfil/Detalles?">Detalles</a>
+							<a class="btn-secondary delete">Borrar</a>
+						</td>
+					</tr>
+				}
 			</tbody>
 		</table>
 	</div>
 </div>
+@functions {
+    public string FormatearTipo(string tipo)
+    {
+        return tipo switch
+        {
+            "torre_hanoi" => "Torre Hanoi",
+            "completa_operacion" => "Completa Operación",
+            "calculo_rapido" => "Cálculo Rápido",
+            "memoria_visual" => "Memoria Visual",
+            "logica_numerica" => "Lógica Numérica",
+            "atencion_secuencial" => "Atención Secuencial",
+            "series_matematicas" => "Series Matemáticas",
+            "razonamiento_espacial" => "Razonamiento Espacial",
+            "coordinacion_motriz" => "Coordinación Motriz",
+            _ => System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(tipo.Replace("_", " "))
+        };
+    }
+}

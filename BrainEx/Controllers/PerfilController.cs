@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Security.Claims;
 using System.Text.Json;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace BrainEx.Controllers
 {
@@ -11,26 +12,41 @@ namespace BrainEx.Controllers
     {
         public async Task<IActionResult> Index()
         {
-            if (!User.Identity.IsAuthenticated) { return Unauthorized("Usuario no autenticado"); } // Redirigir a Home
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
             var guid = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            if (string.IsNullOrEmpty(guid)) { return BadRequest("No se encontró el GUID del usuario"); }
+            if (string.IsNullOrEmpty(guid)) { return RedirectToAction("Index", "Home"); }
 
-            using var httpClient = new HttpClient();
+            
             var proxyUrl = Environment.GetEnvironmentVariable("ApiBaseUrl");
             var targetEndpoint = $"/api/Usuarios/info-user/{guid}";
+            var partidasEndpoint = $"/api/Usuarios/partidas/{guid}";
 
-            if (targetEndpoint == null) return BadRequest("Valor no encontrado"); 
+            using var httpClient = new HttpClient();
+            var userResponse = httpClient.GetAsync($"{proxyUrl}{targetEndpoint}");
+            var partidasJson = httpClient.GetStringAsync($"{proxyUrl}{partidasEndpoint}");
+            await Task.WhenAll(userResponse, partidasJson);
 
-            var response = await httpClient.GetAsync($"{proxyUrl}{targetEndpoint}");
+            if (!userResponse.IsCompletedSuccessfully || !partidasJson.IsCompletedSuccessfully)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
-            User modelUser = new() {
-                Name = "",
-                UserName = "",
-                Email = ""
+            var userJson = await userResponse.Result.Content.ReadAsStringAsync();
+            
+            var user = JsonSerializer.Deserialize<User>(userJson, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            var partidas = JsonSerializer.Deserialize<List<PartidaItem>>(partidasJson.Result, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+            //Comprobar de que vengan datos o redirigir a la home
+            var model = new UsuarioDatosPerfil
+            {
+                Usuario = user,
+                Partidas = partidas ?? new List<PartidaItem>()
             };
-
-            return View(modelUser);
+            return View(model);
         }
 
         public IActionResult Detalles()
