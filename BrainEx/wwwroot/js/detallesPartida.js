@@ -1,20 +1,23 @@
 ﻿
-    function SolicitarDatosPartida(string tipoPartida, string idPartida) {
+if ($("body").hasClass("vista-perfil") {
+    string idDelete = $("a.btn-secondary.delete").closest("tr.info-partida").attr("data-item");
+    $("a.btn-secondary.delete").closest("tr.info-partida").remove();
 
-    }
+    // Llamar petición ajax a proxy para eliminar id.
+}
 
-    function PintarEstadisticasHanoi(array itemDatos) {
-        const resultScreen = document.getElementById("result-screen");
-        resultScreen.classList.remove('hidden');
-        resultScreen.innerHTML = `
+function PintarEstadisticasHanoi(array itemDatos) {
+    const resultScreen = document.getElementById("result-screen");
+    resultScreen.classList.remove('hidden');
+    resultScreen.innerHTML = `
             <h2>¡Completado!</h2>
             <p>¡Has resuelto la Torre de Hanoi!</p>
             <p>Movimientos: <strong>${moveCount}</strong></p>
             <p>Tiempo total: <strong>${totalTime} segundos</strong></p>`;
-    }
+}
 
-    function PintarEstadisticas(array itemDatos) {
-        const statsHTML = `
+function PintarEstadisticas(array itemDatos) {
+    const statsHTML = `
             <div class="stats-summary">
                 <p><strong>Tiempo total:</strong> ${totalTime} s</p>
                 <p><strong>Media por fase:</strong> ${avgTime} s</p>
@@ -48,65 +51,65 @@
             </div>
         `;
 
-        const container = document.createElement('div');
-        container.id = "result-stats";
-        container.innerHTML = statsHTML;
-        resultScreen.appendChild(container);
+    const container = document.createElement('div');
+    container.id = "result-stats";
+    container.innerHTML = statsHTML;
+    resultScreen.appendChild(container);
 
-        const ctx = document.getElementById('timeChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: sequences.map((_, i) => `Fase ${i + 1}`),
-                datasets: [{
-                    label: 'Segundos',
-                    data: timesPerSeq.map(t => (t / 1000).toFixed(2)),
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    fill: true,
-                    tension: 0.3,
-                    pointRadius: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Tiempo (s)'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Fases'
-                        }
+    const ctx = document.getElementById('timeChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: sequences.map((_, i) => `Fase ${i + 1}`),
+            datasets: [{
+                label: 'Segundos',
+                data: timesPerSeq.map(t => (t / 1000).toFixed(2)),
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true,
+                tension: 0.3,
+                pointRadius: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Tiempo (s)'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Fases'
                     }
                 }
             }
-        });
+        }
+    });
 
-        const ctx2 = document.getElementById('accuracyChart').getContext('2d');
-        new Chart(ctx2, {
-            type: 'doughnut',
-            data: {
-                labels: ['Aciertos a la primera', 'Con fallos'],
-                datasets: [{
-                    data: [perfectSeqs, sequences.length - perfectSeqs],
-                    backgroundColor: ['#4caf50', '#f44336'],
-                    borderColor: ['#388e3c', '#c62828'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    }
+    const ctx2 = document.getElementById('accuracyChart').getContext('2d');
+    new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+            labels: ['Aciertos a la primera', 'Con fallos'],
+            datasets: [{
+                data: [perfectSeqs, sequences.length - perfectSeqs],
+                backgroundColor: ['#4caf50', '#f44336'],
+                borderColor: ['#388e3c', '#c62828'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    position: 'bottom'
                 }
             }
-        });
-    }
+        }
+    });
+}
 

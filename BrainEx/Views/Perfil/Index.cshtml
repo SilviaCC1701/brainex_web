@@ -31,12 +31,12 @@
 			<tbody>
 				@foreach (PartidaItem partida in Model.Partidas)
 				{
-					<tr class="info-partida" data-item="@($"{partida.Tipo}_{partida.Id}")">
+					<tr class="info-partida" data-item="@($"{partida.Id}_{partida.Tipo}")">
 						<td>@partida.Fecha.ToString("dd-MM-yyyy")</td>
 						<td>@FormatearTipo(partida.Tipo)</td>
 						<td>@partida.Segundos sg</td>
 						<td class="celda-acciones">
-							<a class="btn-secondary details" href="./Perfil/Detalles?">Detalles</a>
+							<a class="btn-secondary details" href="./Perfil/Detalles?PartidaID=@($"{partida.Id}_{partida.Tipo}")">Detalles</a>
 							<a class="btn-secondary delete">Borrar</a>
 						</td>
 					</tr>
@@ -50,15 +50,12 @@
     {
         return tipo switch
         {
-            "torre_hanoi" => "Torre Hanoi",
+			"calculo_rapido" => "Cálculo Rápido",
             "completa_operacion" => "Completa Operación",
-            "calculo_rapido" => "Cálculo Rápido",
-            "memoria_visual" => "Memoria Visual",
-            "logica_numerica" => "Lógica Numérica",
-            "atencion_secuencial" => "Atención Secuencial",
-            "series_matematicas" => "Series Matemáticas",
-            "razonamiento_espacial" => "Razonamiento Espacial",
-            "coordinacion_motriz" => "Coordinación Motriz",
+			"encuentra_patron" => "Encuentra Patrón",
+            "memory_game" => "Memory Game",
+			"sigue_secuencia" => "Sigue Secuencia",
+			"torre_hanoi" => "Torre Hanoi",
             _ => System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(tipo.Replace("_", " "))
         };
     }

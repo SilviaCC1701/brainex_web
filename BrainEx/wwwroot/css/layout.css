@@ -245,8 +245,20 @@ span.addAzulColor { color: var(--azul_cielo); }
 .vista-perfil .btn-secondary.details {background-color: var(--azul_claro); border: 2px solid var(--azul_cielo);color: var(--negro);}
 .vista-perfil .btn-secondary.delete {background-color: var(--coral_claro);border: 2px solid var(--coral);color: var(--negro);}
 
-
-
+/* *-*-*-*-* DETALLES PARTIDA STYLE *-*-*-*-* */
+.vista-detalles-partida { max-width: 900px; margin: 2rem auto; padding: 1rem; }
+.vista-detalles-partida .titulo { text-align: center; font-size: 2.8rem; margin-bottom: 2rem; }
+.vista-detalles-partida .container-de-bloques { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; }
+.vista-detalles-partida .bloque { border-radius: 1rem; padding: 1.5rem; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+.vista-detalles-partida .bloque-tiempo { background-color: var(--azul_claro); flex: 1 1 300px; }
+.vista-detalles-partida .bloque-precision { background-color: var(--lavanda_claro); flex: 1 1 300px; }
+.vista-detalles-partida .bloque-detalle { background-color: var(--amarillo_claro); flex: 1 1 350px; }
+.vista-detalles-partida .bloque-detalle h3 { margin-top: 0; font-size: 1.2rem; margin-bottom: 1rem; }
+.vista-detalles-partida .bloque-detalle ul { list-style-type: disc; padding-left: 1.5rem; font-size: 1rem; line-height: 1.6; }
+.vista-detalles-partida .bloque-graficos { display: flex; flex-direction: column; gap: 2rem; flex: 1 1 400px; }
+.vista-detalles-partida .grafico-tiempo, .grafico-aciertos { background-color: var(--verde_claro); border-radius: 1rem; padding: 1rem; text-align: center; }
+.vista-detalles-partida .grafico-tiempo h3, .grafico-aciertos h3 { font-size: 1.1rem; margin-bottom: 1rem; }
+.vista-detalles-partida .grafico-tiempo img, .grafico-aciertos img { max-width: 100%; height: auto; border-radius: 0.5rem; }
 
 
 

@@ -1,8 +1,72 @@
 ﻿@model IEnumerable<BrainEx.Models.User>
 @{
-	ViewData["Title"] = "Perfil de Usuario";
+	ViewData["Title"] = "Detalles";
+	string partidaId = Context.Request.Query["PartidaID"];
+	var tipoPartida = partidaId.Split('_')[1];
 }
 
-<div class="vista-detalles-partida">
+function PintarDetallesTorreHanoi
 
+<div class="vista-detalles-partida">
+    <h1 class="titulo">Resultados</h1>
+    <div class="container-de-bloques">
+        <div class="bloque bloque-tiempo">
+            <ul>
+                <li>Tiempo total: 28.57 segundos</li>
+                <li>Media por operación: 2.86 segundos</li>
+                <li>Operaciones totales: 10</li>
+            </ul>
+        </div>
+        <div class="bloque bloque-precision">
+            <ul>
+                <li>Precisión total: 90.9%</li>
+                <li>Fallos totales: 1</li>
+                <li>Intentos totales: 11</li>
+            </ul>
+        </div>
+        <div class="bloque bloque-detalle">
+            <h3>Detalle por operación</h3>
+            <ul>
+                <li>6 - 2 → 1 intento, 2.02 s</li>
+                <li>10 - 1 → 1 intento, 1.31 s</li>
+                <li>9 - 9 → 2 intentos, 2.50 s</li>
+                <li>4 + 10 → 1 intento, 1.47 s</li>
+                <li>9 - 8 → 1 intento, 0.02 s</li>
+                <li>8 + 8 → 1 intento, 2.05 s</li>
+                <li>1 + 9 → 1 intento, 1.50 s</li>
+                <li>9 + 1 → 1 intento, 1.48 s</li>
+                <li>2 + 8 → 1 intento, 1.03 s</li>
+            </ul>
+        </div>
+        <div class="bloque bloque-graficos">
+            <div class="grafico-tiempo">
+                <h3>Gráfico: Tiempo por operación</h3>
+                <img src="grafico-tiempo-ejemplo.png" alt="Gráfico de tiempo por operación">
+            </div>
+            <div class="grafico-aciertos">
+                <h3>Distribución de aciertos</h3>
+                <img src="grafico-donut-ejemplo.png" alt="Gráfico de aciertos tipo dona">
+            </div>
+        </div>
+    </div>
 </div>
+
+
+@switch (tipoPartida)
+{
+    case "calculo_rapido":
+
+        break;
+    case "completa_operacion":
+        break;
+    case "encuentra_patron":
+        break;
+    case "memory_game":
+        break;
+    case "sigue_secuencia":
+        break;
+    case "torre_hanoi":
+        break;
+    case "CEC":
+        break;
+}
