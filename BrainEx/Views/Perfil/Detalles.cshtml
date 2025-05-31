@@ -1,24 +1,31 @@
 ﻿@model dynamic
-
-
 @{
     ViewData["Title"] = "Detalles";
-    string partidaId = Context.Request.Query["PartidaID"];
-    var tipoPartida = partidaId.Split('_')[1];
-    switch (tipoPartida)
-    {
-        case "calculo_rapido":
+    //string partidaId = Context.Request.Query["PartidaID"];
+    //var tipoPartida = partidaId.Split('_')[1];
+}
+@{
+    string partialPath = null;
 
+    switch (Model.GetType().Name)
+    {
+        case "ResultadoCalculoRapido":
+            partialPath = "~/Views/Perfil/Bloques/BloqCalcRapido.cshtml";
             break;
-        case "completa_operacion":
+        case "ResultadoCompletaOperacion":
+            partialPath = "~/Views/Perfil/Bloques/BloqCompletaOp.cshtml";
             break;
-        case "encuentra_patron":
+        case "ResultadoEncuentraPatron":
+            partialPath = "~/Views/Perfil/Bloques/BloqFindPatron.cshtml";
             break;
-        case "memory_game":
+        case "ResultadoMemoryGame":
+            partialPath = "~/Views/Perfil/Bloques/BloqMemoGame.cshtml";
             break;
-        case "sigue_secuencia":
+        case "ResultadoSigueSecuencia":
+            partialPath = "~/Views/Perfil/Bloques/BloqKeepSeq.cshtml";
             break;
-        case "torre_hanoi":
+        case "ResultadoTorreHanoi":
+            partialPath = "~/Views/Perfil/Bloques/BloqTowerHanoi.cshtml";
             break;
         case "CEC":
             break;
@@ -28,27 +35,10 @@
 <div class="vista-detalles-partida">
     <h1 class="titulo">Resultados</h1>
     <div class="container-de-bloques">
-        @{
-            switch (Model.GetType().Name)
-            {
-                case "ResultadoCalculoRapido":
-
-                    break;
-                case "ResultadoCompletaOperacion":
-                    break;
-                case "ResultadoEncuentraPatron":
-                    break;
-                case "ResultadoMemoryGame":
-                    break;
-                case "ResultadoSigueSecuencia":
-                    break;
-                case "ResultadoTorreHanoi":
-                    break;
-                case "CEC":
-                    break;
-            }
+        @if (partialPath != null)
+        {
+            @Html.Partial(partialPath, (object)Model)
         }
     </div>
 </div>
-
 

@@ -1,41 +1,138 @@
-﻿@{
+﻿@model BrainEx.Models.Resultados.ResultadoCalculoRapido
+@{
 }
 
 <div class="bloque bloque-tiempo">
-    <ul>
-        <li>Tiempo total: 28.57 segundos</li>
-        <li>Media por operación: 2.86 segundos</li>
-        <li>Operaciones totales: 10</li>
-    </ul>
+	<ul>
+		<li>Tiempo total: @Model.TiempoTotal</li>
+		<li>Media por operación: @Model.TiempoMedio segundos</li>
+		<li>Operaciones totales: @Model.TotalOperaciones</li>
+		<li>NºAciertos 1er intento: @Model.AciertosPrimera</li>
+	</ul>
 </div>
 <div class="bloque bloque-precision">
-    <ul>
-        <li>Precisión total: 90.9%</li>
-        <li>Fallos totales: 1</li>
-        <li>Intentos totales: 11</li>
-    </ul>
+	<ul>
+		<li>Precisión: @Model.Precision</li>
+		<li>Fallos totales: @Model.FallosTotales</li>
+		<li>Intentos totales: @Model.IntentosTotales</li>
+		<li>Tiempo mínimo: @Model.TiempoMinimo</li>
+		<li>Tiempo maximo: @Model.TiempoMaximo</li>
+	</ul>
 </div>
 <div class="bloque bloque-detalle">
-    <h3>Detalle por operación</h3>
-    <ul>
-        <li>6 - 2 → 1 intento, 2.02 s</li>
-        <li>10 - 1 → 1 intento, 1.31 s</li>
-        <li>9 - 9 → 2 intentos, 2.50 s</li>
-        <li>4 + 10 → 1 intento, 1.47 s</li>
-        <li>9 - 8 → 1 intento, 0.02 s</li>
-        <li>8 + 8 → 1 intento, 2.05 s</li>
-        <li>1 + 9 → 1 intento, 1.50 s</li>
-        <li>9 + 1 → 1 intento, 1.48 s</li>
-        <li>2 + 8 → 1 intento, 1.03 s</li>
-    </ul>
+	<h3>Detalle por operación</h3>
+	<table>
+		<thead>
+		<th>Operacion</th>
+		<th>Nº Intentos</th>
+		<th>Tiempo</th>
+		</thead>
+		<tbody>
+			@foreach (var infoOp in Model.DetallePorOperacion)
+			{
+				<tr>
+					<td>@infoOp.Operacion</td>
+					<td>@infoOp.Intentos</td>
+					<td>@infoOp.Tiempo sg</td>
+				</tr>
+			}
+		</tbody>
+	</table>
 </div>
 <div class="bloque bloque-graficos">
-    <div class="grafico-tiempo">
-        <h3>Gráfico: Tiempo por operación</h3>
-        <img src="grafico-tiempo-ejemplo.png" alt="Gráfico de tiempo por operación">
-    </div>
-    <div class="grafico-aciertos">
-        <h3>Distribución de aciertos</h3>
-        <img src="grafico-donut-ejemplo.png" alt="Gráfico de aciertos tipo dona">
-    </div>
+	<div class="grafico-tiempo">
+		<h3>Gráfico: Tiempo por operación</h3>
+		<div style="width: 100%; max-width: 800px; margin: 40px auto;">
+			<canvas id="timeChart"></canvas>
+		</div>
+	</div>
+	<div class="grafico-aciertos">
+		<h3>Distribución de aciertos</h3>
+		<div style="width: 100%; max-width: 500px; margin: 40px auto;">
+			<canvas id="accuracyChart"></canvas>
+		</div>
+	</div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+	const operations = [
+	@foreach (var op in Model.DetallePorOperacion)
+	{
+		@: "@op.Operacion",
+	}
+	];
+
+	const timesPerOp = [
+	@foreach (var op in Model.DetallePorOperacion)
+	{
+		@: @op.Tiempo,
+	}
+	];
+
+	const ctxLine = document.getElementById('timeChart').getContext('2d');
+	new Chart(ctxLine, {
+		type: 'line',
+		data: {
+			labels: operations,
+			datasets: [{
+				label: 'Tiempo por operación (s)',
+				data: timesPerOp,
+				borderColor: 'rgba(75, 192, 192, 1)',
+				backgroundColor: 'rgba(75, 192, 192, 0.2)',
+				fill: true,
+				tension: 0.3,
+				pointRadius: 4
+			}]
+		},
+		options: {
+			responsive: true,
+			maintainAspectRatio: false,
+			scales: {
+				y: {
+					beginAtZero: true,
+					title: {
+						display: true,
+						text: 'Tiempo (s)'
+					}
+				},
+				x: {
+					title: {
+						display: true,
+						text: 'Operaciones'
+					}
+				}
+			}
+		}
+	});
+
+	const ctxPie = document.getElementById('accuracyChart').getContext('2d');
+	new Chart(ctxPie, {
+		type: 'pie',
+		data: {
+			labels: ['Aciertos 1er intento', 'Con fallos'],
+			datasets: [{
+				data: [@Model.AciertosPrimera, @(Model.FallosTotales)],
+				backgroundColor: [
+					'rgba(54, 162, 235, 0.6)',
+					'rgba(255, 99, 132, 0.6)'
+				],
+				borderColor: [
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 99, 132, 1)'
+				],
+				borderWidth: 1
+			}]
+		},
+		options: {
+			responsive: true,
+			maintainAspectRatio: false
+		}
+	});
+
+</script>
+<style>
+	#timeChart, #accuracyChart {
+		width: 100%;
+		height: 300px;
+	}
+</style>
