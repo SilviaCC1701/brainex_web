@@ -6,34 +6,50 @@
 }
 @{
     string partialPath = null;
+    string tituloTXT = null;
+    string colorTitulo = null;
 
     switch (Model.GetType().Name)
     {
         case "ResultadoCalculoRapido":
+            colorTitulo = "addAzulColor";
+            tituloTXT = "Calculo Rápido";
             partialPath = "~/Views/Perfil/Bloques/BloqCalcRapido.cshtml";
             break;
         case "ResultadoCompletaOperacion":
+            colorTitulo = "addLavandaColor";
+            tituloTXT = "Completa Operación";
             partialPath = "~/Views/Perfil/Bloques/BloqCompletaOp.cshtml";
             break;
         case "ResultadoEncuentraPatron":
+            colorTitulo = "addNaranjaColor";
+            tituloTXT = "Encuentra Patrón";
             partialPath = "~/Views/Perfil/Bloques/BloqFindPatron.cshtml";
             break;
         case "ResultadoMemoryGame":
+            colorTitulo = "addAmarilloColor";
+            tituloTXT = "Memory Game";
             partialPath = "~/Views/Perfil/Bloques/BloqMemoGame.cshtml";
             break;
         case "ResultadoSigueSecuencia":
+            colorTitulo = "addCoralColor";
+            tituloTXT = "Sigue Secuencia";
             partialPath = "~/Views/Perfil/Bloques/BloqKeepSeq.cshtml";
             break;
         case "ResultadoTorreHanoi":
+            colorTitulo = "addVerdeColor";
+            tituloTXT = "Torre Hanoi";
             partialPath = "~/Views/Perfil/Bloques/BloqTowerHanoi.cshtml";
             break;
         case "CEC":
+            colorTitulo = "addAzulColor";
+            tituloTXT = "Calculo Edad Cerebral";
             break;
     }
 }
 
+<h1 id="titulo">Resultados de <span class="@colorTitulo">@tituloTXT</span></h1>
 <div class="vista-detalles-partida">
-    <h1 class="titulo">Resultados</h1>
     <div class="container-de-bloques">
         @if (partialPath != null)
         {

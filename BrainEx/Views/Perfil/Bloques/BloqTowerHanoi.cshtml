@@ -1,18 +1,21 @@
 ﻿@model BrainEx.Models.Resultados.ResultadoTorreHanoi
 
 <div class="bloque bloque-tiempo">
+	<h3>Tiempos</h3>
 	<ul>
-		<li>Tiempo total: @Model.TiempoTotal</li>
-		<li>Discos: @Model.Discos</li>
-		<li>NºMovimientos: @Model.Movimientos</li>
-		<li>NºMovimientos Optimos: @Model.MovimientosOptimos</li>
+		<li>Discos: <span class="textoNormal">@Model.Discos</span></li>
+		<li>Tiempo total: <span class="textoNormal">@Model.TiempoTotal</span></li>
+		<li>Tiempo por movimiento: <span class="textoNormal">@Model.TiempoPorMovimiento</span></li>
+		<li>Tiempo maximo: <span class="textoNormal">@Model.EficienciaEsperada</span></li>
+		
 	</ul>
 </div>
 <div class="bloque bloque-precision">
+	<h3>Acciones</h3>
 	<ul>
-		<li>Eficiencia: @Model.Eficiencia</li>
-		<li>NºMovimientos Extras: @Model.MovimientosExtra</li>
-		<li>Tiempo por movimiento: @Model.TiempoPorMovimiento</li>
-		<li>Tiempo maximo: @Model.EficienciaEsperada</li>
+		<li>NºMovimientos: <span class="textoNormal">@Model.Movimientos</span></li>
+		<li>NºMovimientos Extras: <span class="textoNormal">@Model.MovimientosExtra</span></li>
+		<li>NºMovimientos Optimos: <span class="textoNormal">@Model.MovimientosOptimos</span></li>
+		<li>Eficiencia: <span class="textoNormal">@Model.Eficiencia</span></li>
 	</ul>
 </div>

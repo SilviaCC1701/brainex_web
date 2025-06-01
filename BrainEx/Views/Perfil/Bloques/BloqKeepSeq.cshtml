@@ -3,20 +3,22 @@
 }
 
 <div class="bloque bloque-tiempo">
+	<h3>Tiempos</h3>
 	<ul>
-		<li>Tiempo total: @Model.TiempoTotal</li>
-		<li>Media por operación: @Model.TiempoMedio segundos</li>
-		<li>Operaciones totales: @Model.TotalFases</li>
-		<li>NºAciertos 1er intento: @Model.AciertosPrimera</li>
+		<li>Tiempo total: <span class="textoNormal">@Model.TiempoTotal</span></li>
+		<li>Media por fases: <span class="textoNormal">@Model.TiempoMedio segundos</span></li>
+		<li>Fases totales: <span class="textoNormal">@Model.TotalFases</span></li>
+		<li>Tiempo mínimo: <span class="textoNormal">@Model.TiempoMinimo</span></li>
+		<li>Tiempo maximo: <span class="textoNormal">@Model.TiempoMaximo</span></li>
 	</ul>
 </div>
 <div class="bloque bloque-precision">
+	<h3>Acciones</h3>
 	<ul>
-		<li>Precisión: @Model.Precision</li>
-		<li>Fallos totales: @Model.FallosTotales</li>
-		<li>Intentos totales: @Model.IntentosTotales</li>
-		<li>Tiempo mínimo: @Model.TiempoMinimo</li>
-		<li>Tiempo maximo: @Model.TiempoMaximo</li>
+		<li>NºAciertos 1er intento: <span class="textoNormal">@Model.AciertosPrimera</span></li>
+		<li>Fallos totales: <span class="textoNormal">@Model.FallosTotales</span></li>
+		<li>Intentos totales: <span class="textoNormal">@Model.IntentosTotales</span></li>
+		<li>Precisión: <span class="textoNormal">@Model.Precision</span></li>
 	</ul>
 </div>
 <div class="bloque bloque-detalle">
@@ -42,13 +44,13 @@
 <div class="bloque bloque-graficos">
 	<div class="grafico-tiempo">
 		<h3>Gráfico: Tiempo por operación</h3>
-		<div style="width: 100%; max-width: 800px; margin: 40px auto;">
+		<div style="width: 100%; max-width: 800px; margin: 15px auto; height: 250px;">
 			<canvas id="timeChart"></canvas>
 		</div>
 	</div>
 	<div class="grafico-aciertos">
 		<h3>Distribución de aciertos</h3>
-		<div style="width: 100%; max-width: 500px; margin: 40px auto;">
+		<div style="width: 100%; max-width: 500px; margin: 15px auto; height: 250px;">
 			<canvas id="accuracyChart"></canvas>
 		</div>
 	</div>
