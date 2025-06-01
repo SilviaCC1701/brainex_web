@@ -259,13 +259,13 @@ h2#titleJuegos { font-weight: bold; text-align: center; font-size: xxx-large; }
 .vista-perfil .dato-edad {display: block;font-size: 5rem;font-weight: bold;color: #6EB5FF;/* margin-top: 0.3rem; */}
 .vista-perfil .container-partidas { margin-top: 2rem; }
 .vista-perfil .title-second {font-size: 1.85rem;margin-bottom: 1rem;font-weight: 600;}
-.vista-perfil table { width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+.vista-perfil table { font-size: 19px; width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
 .vista-perfil thead { background: #F0F0F0; }
 .vista-perfil th, .vista-perfil td { padding: 0.75rem 1rem; text-align: center;}
 .vista-perfil td.celda-acciones {display: flex;flex-direction: row;flex-wrap: wrap;align-items: center;gap: 10px;justify-content: center;}
 .vista-perfil tbody tr:not(:last-child) { border-bottom: 1px solid #eee; }
 .vista-perfil .btn-secondary:hover { filter: brightness(0.95); }
-.vista-perfil .btn-secondary { padding: 0.3rem 0.8rem; border-radius: 8px; font-weight: bold; text-decoration: none; cursor: pointer; display: inline-block; font-size: 0.95rem; }
+.vista-perfil .btn-secondary { padding: 0.3rem 0.8rem; border-radius: 8px; font-weight: bold; text-decoration: none; cursor: pointer; display: inline-block; }
 .vista-perfil .btn-secondary.details {background-color: var(--azul_claro); border: 2px solid var(--azul_cielo);color: var(--negro);}
 .vista-perfil .btn-secondary.delete {background-color: var(--coral_claro);border: 2px solid var(--coral);color: var(--negro);}
 
