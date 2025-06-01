@@ -100,6 +100,13 @@ span.addVerdeColor { color: var(--verde_menta); }
     border-top: none;
 }
 
+#loginModal #login-tab-pane > form,
+#loginModal #register-tab-pane > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #loginModal #login-tab-pane > form > div, #loginModal #register-tab-pane > form > div { width: 100%; }
 
 /* === Inputs y botones === */
