@@ -1,17 +1,185 @@
 ﻿@model BrainEx.Models.Resultados.EdadCerebralResultado
 @{
-    string hoklsdf="asdfñlj";
+	string hoklsdf = "asdfñlj";
 }
 <h1 id="titulo">Resultados de <span class="addAzulColor">Edad Cerebral</span></h1>
 <div class="vista-detalles-partida">
-    <div class="container-de-bloques">
-        Resultados de Edad Cerebral
-    </div>
+	<div class="container-de-bloques">
+
+		<div class="bloque bloque-tiempo">
+			<h3>Tiempos</h3>
+			<ul>
+				<li>Operaciones totales: <span class="textoNormal">@Model.TiempoTotalSegundos</span></li>
+				<li>Edad Estimada: <span class="textoNormal">@Model.EdadEstimada</span></li>
+				<li>Puntuación Global: <span class="textoNormal">@Model.PuntuacionGlobal pts.</span></li>
+				<li>Diagnostico: <span class="textoNormal">@Model.Diagnostico</span></li>
+			</ul>
+		</div>  
+		<div class="bloque bloque-precision">
+			<h3>Recomendaciones</h3>
+			<ul>
+				@foreach(var recom in Model.Recomendaciones){
+					<li><span class="textoNormal">@recom</span></li>
+				}
+			</ul>
+		</div>
+
+		@{}
+
+		@foreach(var resumenJuego in Model.ResumenPorJuego)
+		{
+			string colorFondo = null;
+			switch (resumenJuego.Juego)
+			{
+				case "Cálculo rápido":
+					colorFondo = "addFondoAzulColor";
+					<div class="bloque bloque-tiempo" id="@colorFondo">
+						<h3>Resumen de Calculo Rápido</h3>
+						<ul>
+							<li>Categoria: <span class="textoNormal">@resumenJuego.Categoria</span></li>
+							<li>Tiempo Medio: <span class="textoNormal">@resumenJuego.TiempoMedio</span></li>
+							<li>Tiempo Desviación: <span class="textoNormal">@resumenJuego.DesviacionTiempo pts.</span></li>
+							<li>NºAciertos 1er intento: <span class="textoNormal">@resumenJuego.AciertosPrimera</span></li>
+							<li>Total: <span class="textoNormal">@resumenJuego.Total</span></li>
+							<li>Errores: <span class="textoNormal">@resumenJuego.Errores</span></li>
+							<li>Precisión: <span class="textoNormal">@resumenJuego.Precision</span></li>
+							<li>Tiempo por Error: <span class="textoNormal">@resumenJuego.TiempoPorError</span></li>
+							<li>Eficiencia: <span class="textoNormal">@resumenJuego.Eficiencia</span></li>
+						</ul>
+					</div>
+					break;
+				case "Sigue la secuencia":
+					colorFondo = "addFondoLavandaColor";
+					<div class="bloque bloque-precision" id="@colorFondo">
+						<h3>Resumen de Sigue Secuencia</h3>
+						<ul>
+							<li>Categoria: <span class="textoNormal">@resumenJuego.Categoria</span></li>
+							<li>Tiempo Medio: <span class="textoNormal">@resumenJuego.TiempoMedio</span></li>
+							<li>Tiempo Desviación: <span class="textoNormal">@resumenJuego.DesviacionTiempo pts.</span></li>
+							<li>NºAciertos 1er intento: <span class="textoNormal">@resumenJuego.AciertosPrimera</span></li>
+							<li>Total: <span class="textoNormal">@resumenJuego.Total</span></li>
+							<li>Errores: <span class="textoNormal">@resumenJuego.Errores</span></li>
+							<li>Precisión: <span class="textoNormal">@resumenJuego.Precision</span></li>
+							<li>Tiempo por Error: <span class="textoNormal">@resumenJuego.TiempoPorError</span></li>
+							<li>Eficiencia: <span class="textoNormal">@resumenJuego.Eficiencia</span></li>
+						</ul>
+					</div>
+					break;
+				case "Encuentra el patrón":
+					colorFondo = "addFondoNaranjaColor";
+					<div class="bloque bloque-tiempo" id="@colorFondo">
+						<h3>Resumen de Encuentra Patron</h3>
+						<ul>
+							<li>Categoria: <span class="textoNormal">@resumenJuego.Categoria</span></li>
+							<li>Tiempo Medio: <span class="textoNormal">@resumenJuego.TiempoMedio</span></li>
+							<li>Tiempo Desviación: <span class="textoNormal">@resumenJuego.DesviacionTiempo pts.</span></li>
+							<li>NºAciertos 1er intento: <span class="textoNormal">@resumenJuego.AciertosPrimera</span></li>
+							<li>Total: <span class="textoNormal">@resumenJuego.Total</span></li>
+							<li>Errores: <span class="textoNormal">@resumenJuego.Errores</span></li>
+							<li>Precisión: <span class="textoNormal">@resumenJuego.Precision</span></li>
+							<li>Tiempo por Error: <span class="textoNormal">@resumenJuego.TiempoPorError</span></li>
+							<li>Eficiencia: <span class="textoNormal">@resumenJuego.Eficiencia</span></li>
+						</ul>
+					</div>
+					break;
+				case "Memoria de color":
+					colorFondo = "addFondoCoralColor";
+					<div class="bloque bloque-precision" id="@colorFondo">
+						<h3>Resumen de Memory Game</h3>
+						<ul>
+							<li>Categoria: <span class="textoNormal">@resumenJuego.Categoria</span></li>
+							<li>Tiempo Medio: <span class="textoNormal">@resumenJuego.TiempoMedio</span></li>
+							<li>Tiempo Desviación: <span class="textoNormal">@resumenJuego.DesviacionTiempo pts.</span></li>
+							<li>NºAciertos 1er intento: <span class="textoNormal">@resumenJuego.AciertosPrimera</span></li>
+							<li>Total: <span class="textoNormal">@resumenJuego.Total</span></li>
+							<li>Errores: <span class="textoNormal">@resumenJuego.Errores</span></li>
+							<li>Precisión: <span class="textoNormal">@resumenJuego.Precision</span></li>
+							<li>Tiempo por Error: <span class="textoNormal">@resumenJuego.TiempoPorError</span></li>
+							<li>Eficiencia: <span class="textoNormal">@resumenJuego.Eficiencia</span></li>
+						</ul>
+					</div>
+					break;
+				case "Completa la operación":
+					colorFondo = "addFondoAmarilloColor";
+					<div class="bloque bloque-tiempo" id="@colorFondo">
+						<h3>Resumen de Completa Operación</h3>
+						<ul>
+							<li>Categoria: <span class="textoNormal">@resumenJuego.Categoria</span></li>
+							<li>Tiempo Medio: <span class="textoNormal">@resumenJuego.TiempoMedio</span></li>
+							<li>Tiempo Desviación: <span class="textoNormal">@resumenJuego.DesviacionTiempo pts.</span></li>
+							<li>NºAciertos 1er intento: <span class="textoNormal">@resumenJuego.AciertosPrimera</span></li>
+							<li>Total: <span class="textoNormal">@resumenJuego.Total</span></li>
+							<li>Errores: <span class="textoNormal">@resumenJuego.Errores</span></li>
+							<li>Precisión: <span class="textoNormal">@resumenJuego.Precision</span></li>
+							<li>Tiempo por Error: <span class="textoNormal">@resumenJuego.TiempoPorError</span></li>
+							<li>Eficiencia: <span class="textoNormal">@resumenJuego.Eficiencia</span></li>
+						</ul>
+					</div>
+					break;
+				case "Torre de Hanoi":
+					colorFondo = "addFondoVerdeColor";
+					<div class="bloque bloque-precision" id="@colorFondo">
+						<h3>Resumen de Torre Hanoi</h3>
+						<ul>
+							<li>Categoria: <span class="textoNormal">@resumenJuego.Categoria</span></li>
+							<li>Tiempo Medio: <span class="textoNormal">@resumenJuego.TiempoMedio</span></li>
+							<li>Tiempo Desviación: <span class="textoNormal">@resumenJuego.DesviacionTiempo pts.</span></li>
+							<li>NºAciertos 1er intento: <span class="textoNormal">@resumenJuego.AciertosPrimera</span></li>
+							<li>Total: <span class="textoNormal">@resumenJuego.Total</span></li>
+							<li>Errores: <span class="textoNormal">@resumenJuego.Errores</span></li>
+							<li>Precisión: <span class="textoNormal">@resumenJuego.Precision</span></li>
+							<li>Tiempo por Error: <span class="textoNormal">@resumenJuego.TiempoPorError</span></li>
+							<li>Eficiencia: <span class="textoNormal">@resumenJuego.Eficiencia</span></li>
+						</ul>
+					</div>
+					break;
+			}
+		}
+	</div>
 </div>
 
-<h1 id="titulo">Resultados de <span class="addAzulColor"></span></h1>
+<h3 id="titulo">Resultados de <span class="addAzulColor">Calculo Rápido</span></h3>
 <div class="vista-detalles-partida">
-    <div class="container-de-bloques">
-        @Html.Partial("~/Views/Perfil/Bloques/BloqCalcRapido.cshtml", Model.ResultadoCalculoRapido)
-    </div>
+	<div class="container-de-bloques">
+		@Html.Partial("~/Views/Perfil/Bloques/BloqCalcRapido.cshtml", Model.ResultadoCalculoRapido)
+	</div>
 </div>
+
+<h3 id="titulo">Resultados de <span class="addLavandaColor">Completa Operación</span></h3>
+<div class="vista-detalles-partida">
+	<div class="container-de-bloques">
+		@Html.Partial("~/Views/Perfil/Bloques/BloqCompletaOp.cshtml", Model.ResultadoCompletaOperacion)
+	</div>
+</div>
+
+<h3 id="titulo">Resultados de <span class="addNaranjaColor">Encuentra Patrón</span></h3>
+<div class="vista-detalles-partida">
+	<div class="container-de-bloques">
+		@Html.Partial("~/Views/Perfil/Bloques/BloqFindPatron.cshtml", Model.ResultadoEncuentraPatron)
+	</div>
+</div>
+
+<h3 id="titulo">Resultados de <span class="addAmarilloColor">Sigue Secuencia</span></h3>
+<div class="vista-detalles-partida">
+	<div class="container-de-bloques">
+		@Html.Partial("~/Views/Perfil/Bloques/BloqKeepSeq.cshtml", Model.ResultadoSigueSecuencia)
+	</div>
+</div>
+
+<h3 id="titulo">Resultados de <span class="addCoralColor">Memory Game</span></h3>
+<div class="vista-detalles-partida">
+	<div class="container-de-bloques">
+		@Html.Partial("~/Views/Perfil/Bloques/BloqMemoGame.cshtml", Model.ResultadoMemoryGame)
+	</div>
+</div>
+
+<h3 id="titulo">Resultados de <span class="addVerdeColor">Torre Hanoi</span></h3>
+<div class="vista-detalles-partida">
+	<div class="container-de-bloques">
+		@Html.Partial("~/Views/Perfil/Bloques/BloqTowerHanoi.cshtml", Model.ResultadoTorreHanoi)
+	</div>
+</div>
+
+<script>
+	$("body").AddClass("resultadosCEC");
+</script>

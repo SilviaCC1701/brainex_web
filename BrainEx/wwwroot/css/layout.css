@@ -59,6 +59,14 @@ span.addNaranjaColor { color: var(--naranja); }
 span.addAmarilloColor { color: var(--amarillo); }
 span.addCoralColor { color: var(--coral); }
 span.addVerdeColor { color: var(--verde_menta); }
+
+#addFondoLavandaColor { background-color: var(--lavanda_claro); }
+#addFondoAzulColor { background-color: var(--azul_claro); }
+#addFondoNaranjaColor { background-color: var(--naranja_claro); }
+#addFondoAmarilloColor { background-color: var(--amarillo_claro); }
+#addFondoCoralColor { background-color: var(--coral_claro); }
+#addFondoVerdeColor { background-color: var(--verde_claro); }
+
 /* *-* MODAL REGISTER/LOGIN STYLE *-* */
 /* === Modal personalizado con paleta === */
 #loginModal .modal-content { background-color: var(--blanco); border: 5px solid var(--negro_suave); border-radius: 8px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); }
@@ -292,3 +300,12 @@ h1#titulo { font-weight: 900; text-align: center; font-size: 60px; margin-bottom
 .vista-detalles-partida table td { font-size: 20px }
 #timeChart, #accuracyChart { width: 100%; height: 300px; display: block; border-radius: 0.5rem; }
 .vista-detalles-partida ul { list-style: disc; padding-left: 1.5rem; line-height: 1.6; }
+
+/* *-*-*-*-* DETALLES CEC STYLE *-*-*-*-* */
+.resultadadosCEC h3#titulo {
+    font-weight: 900;
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 0.5rem;
+}
+
