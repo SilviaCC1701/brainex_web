@@ -112,31 +112,30 @@
         soundEnd.play();
 
         const payload = {
-            operations: operations.map(op => op.display),
-            attemptsPerOp,
-            timesPerOp: timesPerOp.map(t => +(t / 1000).toFixed(3))
+            game: "completa_operacion",
+            data: {
+                operations: operations.map(op => op.display),
+                attemptsPerOp,
+                timesPerOp: timesPerOp.map(t => +(t / 1000).toFixed(3))
+            },
+            fechaInicio: sessionStorage.getItem("CEC_fechaInicio") || new Date().toISOString()
         };
 
-        const now = new Date().toISOString();
-        const existing = sessionStorage.getItem("CalculoEdadCerebral");
-        let data;
+        fetch('/CalcBrainAge/GuardarResultadosCEC', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).catch(err => {
+            console.error("Error al guardar resultados CEC:", err);
+        });
 
-        if (existing) {
-            try {
-                data = JSON.parse(existing);
-            } catch {
-                data = {};
-            }
+        const verBtn = document.getElementById("ver-resultados-btn");
+        if (verBtn) {
+            verBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                window.location.href = "/CalcBrainAge/TorreHanoi";
+            });
         }
-
-        data = {
-            ...(data || {}),
-            juego5: payload,
-            fechaInicio: data?.fechaInicio ?? now,
-            fechaFin: null
-        };
-
-        sessionStorage.setItem("CalculoEdadCerebral", JSON.stringify(data));
     }
 
 

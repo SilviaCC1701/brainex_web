@@ -1,11 +1,6 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
     const gameContainer = document.getElementById('color-memory-game-cec');
     if (!gameContainer) return;
-    const referrer = document.referrer;
-    if (!referrer.includes('/CalcBrainAge/EncuentraPatron')) {
-        window.location.href = '/CalcBrainAge';
-        return;
-    }
 
     const startScreen = document.getElementById('start-screen');
     const countdownEl = document.getElementById('countdown');
@@ -110,32 +105,22 @@
         soundEnd.play();
 
         const payload = {
-            attemptsPerRound,
-            timesPerRound: timesPerRound.map(t => +(t / 1000).toFixed(3)),
-            perfectRounds: roundPerfectFlags.map((v, i) => v ? i + 1 : null).filter(Boolean)
+            game: "memory_game",
+            data: {
+                attemptsPerRound,
+                timesPerRound: timesPerRound.map(t => +(t / 1000).toFixed(3)),
+                perfectRounds: roundPerfectFlags.map((v, i) => v ? i + 1 : null).filter(Boolean)
+            },
+            fechaInicio: sessionStorage.getItem("CEC_fechaInicio") || new Date().toISOString()
         };
 
-        const now = new Date().toISOString();
-        const data = {
-            fechaInicio: null,
-            fechaFin: null,
-            juego1: null,
-            juego2: null,
-            juego3: null,
-            juego4: payload,
-            juego5: null,
-            juego6: null
-        };
-
-        const existing = sessionStorage.getItem("CalculoEdadCerebral");
-        if (existing) {
-            const json = JSON.parse(existing);
-            json.juego4 = payload;
-            sessionStorage.setItem("CalculoEdadCerebral", JSON.stringify(json));
-        } else {
-            data.fechaInicio = now;
-            sessionStorage.setItem("CalculoEdadCerebral", JSON.stringify(data));
-        }
+        fetch('/CalcBrainAge/GuardarResultadosCEC', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).catch(err => {
+            console.error("Error al guardar resultados CEC:", err);
+        });
     }
 
     function startCountdown() {

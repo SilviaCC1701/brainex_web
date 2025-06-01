@@ -1,11 +1,6 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
     const gameContainer = document.getElementById('hanoi-game-cec');
     if (!gameContainer) return;
-    const referrer = document.referrer;
-    if (!referrer.includes('/CalcBrainAge/CompletaOperacion')) {
-        window.location.href = '/CalcBrainAge';
-        return;
-    }
 
     const startScreen = document.getElementById("start-screen");
     const countdownEl = document.getElementById("countdown");
@@ -75,51 +70,31 @@
 
         if (isWin) {
             const totalTime = ((performance.now() - startTime) / 1000).toFixed(2);
-
             resultScreen.classList.remove('hidden');
-            resultScreen.innerHTML = `
-            <h2>¡Completado!</h2>
-            <p>¡Has resuelto la Torre de Hanoi!</p>
-            <p>Movimientos: <strong>${moveCount}</strong></p>
-            <p>Tiempo total: <strong>${totalTime} segundos</strong></p>
-            <button id="next-game-btn" class="next-button" onclick="window.location.href='/CalcBrainAge/Resultados'">Ver resultados</button>
-        `;
 
             const now = new Date().toISOString();
-            const newGameData = {
-                totalDisks,
-                moveCount,
-                timeElapsed: +totalTime,
-                optimalMoves: Math.pow(2, totalDisks) - 1,
-                efficiency: +((Math.pow(2, totalDisks) - 1) / moveCount * 100).toFixed(1)
+            const payload = {
+                game: "torre_hanoi",
+                data: {
+                    totalDisks,
+                    moveCount,
+                    timeElapsed: +totalTime,
+                    optimalMoves: Math.pow(2, totalDisks) - 1,
+                    efficiency: +((Math.pow(2, totalDisks) - 1) / moveCount * 100).toFixed(1)
+                },
+                fechaInicio: sessionStorage.getItem("CEC_fechaInicio") || now,
+                fechaFin: now
             };
 
-            let session = sessionStorage.getItem("CalculoEdadCerebral");
-            let data;
-
-            if (session) {
-                try {
-                    data = JSON.parse(session);
-                } catch {
-                    data = {};
-                }
-            }
-
-            const updated = {
-                fechaInicio: data?.fechaInicio || now,
-                fechaFin: now,
-                juego1: data?.juego1 || null,
-                juego2: data?.juego2 || null,
-                juego3: data?.juego3 || null,
-                juego4: data?.juego4 || null,
-                juego5: data?.juego5 || null,
-                juego6: newGameData
-            };
-
-            sessionStorage.setItem("CalculoEdadCerebral", JSON.stringify(updated));
+            fetch('/CalcBrainAge/GuardarResultadosCEC', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            }).catch(err => {
+                console.error("Error al guardar resultados CEC:", err);
+            });
         }
     }
-
 
 
     function startCountdown() {

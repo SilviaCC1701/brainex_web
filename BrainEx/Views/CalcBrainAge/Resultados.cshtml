@@ -1,1 +1,17 @@
-﻿<p>Pagina de resultados de juego</p>
+﻿@model BrainEx.Models.Resultados.EdadCerebralResultado
+@{
+    string hoklsdf="asdfñlj";
+}
+<h1 id="titulo">Resultados de <span class="addAzulColor">Edad Cerebral</span></h1>
+<div class="vista-detalles-partida">
+    <div class="container-de-bloques">
+        Resultados de Edad Cerebral
+    </div>
+</div>
+
+<h1 id="titulo">Resultados de <span class="addAzulColor"></span></h1>
+<div class="vista-detalles-partida">
+    <div class="container-de-bloques">
+        @Html.Partial("~/Views/Perfil/Bloques/BloqCalcRapido.cshtml", Model.ResultadoCalculoRapido)
+    </div>
+</div>

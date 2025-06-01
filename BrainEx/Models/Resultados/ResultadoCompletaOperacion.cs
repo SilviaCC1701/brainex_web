@@ -21,9 +21,9 @@ namespace BrainEx.Models.Resultados
             using var doc = JsonDocument.Parse(json);
             var root = doc.RootElement;
 
-            var operations = root.GetProperty("operations").EnumerateArray().Select(op => op.GetString()).ToList();
-            var tiempos = root.GetProperty("timesPerOp").EnumerateArray().Select(tpOperation => tpOperation.GetDouble()).ToList();
-            var intentos = root.GetProperty("attemptsPerOp").EnumerateArray().Select(apOperation => apOperation.GetInt32()).ToList();
+            var operations = root.GetProperty("Operations").EnumerateArray().Select(op => op.GetString()).ToList();
+            var tiempos = root.GetProperty("TimesPerOp").EnumerateArray().Select(tpOperation => tpOperation.GetDouble()).ToList();
+            var intentos = root.GetProperty("AttemptsPerOp").EnumerateArray().Select(apOperation => apOperation.GetInt32()).ToList();
 
             TotalOperaciones = operations.Count;
             AciertosPrimera = intentos.Count(i => i == 1);

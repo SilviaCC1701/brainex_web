@@ -1,11 +1,6 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
     const gameContainer = document.getElementById('sequence-game-cec');
     if (!gameContainer) return;
-    const referrer = document.referrer;
-    if (!referrer.includes('/CalcBrainAge/CalculoRapido')) {
-        window.location.href = '/CalcBrainAge';
-        return;
-    }
 
     const startScreen = document.getElementById("start-screen");
     const countdownEl = document.getElementById("countdown");
@@ -174,37 +169,27 @@
     function endGame() {
         grid.innerHTML = '';
         resultScreen.classList.remove('hidden');
-        scoreDisplay.textContent = roundPerfectFlags.filter(v => v).length;
         soundEnd.play();
 
         const payload = {
-            attemptsPerRound,
-            timesPerRound: timesPerRound.map(t => +(t / 1000).toFixed(3)),
-            perfectRounds: roundPerfectFlags.map((v, i) => v ? i + 1 : null).filter(v => v !== null)
+            game: "sigue_secuencia",
+            data: {
+                attemptsPerRound,
+                timesPerRound: timesPerRound.map(t => +(t / 1000).toFixed(3)),
+                perfectRounds: roundPerfectFlags.map((v, i) => v ? i + 1 : null).filter(v => v !== null)
+            },
+            fechaInicio: sessionStorage.getItem("CEC_fechaInicio") || new Date().toISOString()
         };
 
-        const existing = sessionStorage.getItem("CalculoEdadCerebral");
-        let sessionData;
-
-        if (existing) {
-            sessionData = JSON.parse(existing);
-            sessionData.juego2 = payload;
-        } else {
-            const now = new Date().toISOString();
-            sessionData = {
-                fechaInicio: now,
-                fechaFin: null,
-                juego1: null,
-                juego2: payload,
-                juego3: null,
-                juego4: null,
-                juego5: null,
-                juego6: null
-            };
-        }
-
-        sessionStorage.setItem("CalculoEdadCerebral", JSON.stringify(sessionData));
+        fetch('/CalcBrainAge/GuardarResultadosCEC', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).catch(err => {
+            console.error("❌ Error al guardar resultados CEC:", err);
+        });
     }
+
 
 
     function startCountdown() {

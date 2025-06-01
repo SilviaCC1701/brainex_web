@@ -1,11 +1,6 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
     const gameContainer = document.getElementById('fast-math-game-cec');
     if (!gameContainer) return;
-    const referrer = document.referrer;
-    if (!referrer.includes('/CalcBrainAge')) {
-        window.location.href = '/CalcBrainAge';
-        return;
-    }
 
     const prevOp = document.getElementById("prev-operation");
     const currOp = document.getElementById("current-operation");
@@ -60,33 +55,30 @@
     }
 
     function endGame() {
-        const endTime = performance.now();
-        const timeElapsed = ((endTime - startTime) / 1000).toFixed(2);
+        resultScreen.classList.remove("hidden");
+        soundEnd.play();
 
-        const totalAttempts = attemptsPerOp.reduce((a, b) => a + b, 0);
         const times = timesPerOp.map(t => +(t / 1000).toFixed(3));
 
         const payload = {
-            operations,
-            attemptsPerOp,
-            timesPerOp: times
-        };
-        const now = new Date().toISOString();
-        const data = {
-            fechaInicio: now,
-            fechaFin: null,
-            juego1: payload,
-            juego2: null,
-            juego3: null,
-            juego4: null,
-            juego5: null,
-            juego6: null
+            game: "calculo_rapido",
+            data: {
+                operations,
+                attemptsPerOp,
+                timesPerOp: times
+            },
+            fechaInicio: sessionStorage.getItem("CEC_fechaInicio") || new Date().toISOString()
         };
 
-        sessionStorage.setItem("CalculoEdadCerebral", JSON.stringify(data));
-        resultScreen.classList.remove("hidden");
-        soundEnd.play();
+        fetch('/CalcBrainAge/GuardarResultadosCEC', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).catch(err => {
+            console.error("Error al guardar resultados CEC:", err);
+        });
     }
+
 
 
 

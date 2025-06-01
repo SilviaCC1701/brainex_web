@@ -82,7 +82,7 @@ namespace BrainEx.Controllers
 			var targetEndpoint = game switch
 			{
 				"calculo_rapido" => "/api/Juegos/calculo-rapido",
-				"completa_operacion" => "/api/Juegos/completa-operacion",
+				"completa_operacion" => "/api/Juegos/completa-Operacion",
 				"encuentra_patron" => "/api/Juegos/encuentra-patron",
 				"sigue_secuencia" => "/api/Juegos/sigue-secuencia",
 				"memory_game" => "/api/Juegos/memory-game",
