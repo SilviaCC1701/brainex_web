@@ -5,7 +5,7 @@ for details on configuring this project to bundle and minify static web assets. 
     --negro_suave: #1E1E1E;
     --azul_cielo: #6EB5FF;
     --lavanda: #CFA1FF;
-    --verde_menta: #9FFFCB;
+    --verde_menta: #42FF99;
     --amarillo: #FFE866;
     --coral: #FF9E8D;
     --gris_claro: #F0F0F0;
@@ -19,6 +19,8 @@ for details on configuring this project to bundle and minify static web assets. 
     --coral_claro: #FEE3DA;
     --naranja_claro: #FEE3C3;
     --amarillo_table: #FCED92;
+    --lavanda_hover: #E8D1FF;
+    --lavanda_oscuro: #A44DFF;
 
     --azul_negro_oscuro: #29394D;
 
@@ -59,95 +61,96 @@ span.addCoralColor { color: var(--coral); }
 span.addVerdeColor { color: var(--verde_menta); }
 /* *-* MODAL REGISTER/LOGIN STYLE *-* */
 /* === Modal personalizado con paleta === */
-#loginModal .modal-content {
-    background-color: #FAFAF7; /* Marfil suave */
-    border: 5px solid var(--negro_suave);
-    border-radius: 8px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
-#loginModal .modal-header {
-    background-color: #9AB4C2; /* Azul suave grisáceo */
-    color: #404040; /* Gris ceniza */
-    border-bottom: 1px solid #B0B0B0; /* Gris claro */
-    padding-bottom: 0;
-}
-
-#loginModal .modal-title {
-    font-weight: bold; 
-    font-size: 1.25rem; 
-}
-
-#loginModal .btn-close {
-    filter: invert(1); /* Botón de cerrar blanco */
-}
+#loginModal .modal-content { background-color: var(--blanco); border: 5px solid var(--negro_suave); border-radius: 8px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); }
+#loginModal .modal-header { color: #404040; padding-bottom: 0; padding-top: 0px; padding-left: 0px; flex: 1; }
+#loginModal .modal-title { font-weight: bold; font-size: 1.25rem; }
+#loginModal .btn-close { filter: var(--negro_suave); }
 
 /* === Tabs (Login / Registro) === */
-#authTab .nav-link {
-    color: #5D8AA8; /* Azul acero */
-    border: none;
-    background-color: transparent;
-    font-weight: 500;
-}
-
-
+#authTab .nav-link { color: var(--lavanda_oscuro); border: none; background-color: transparent; font-weight: 550; font-size: 20px; }
+#authTab .nav-link.active, #loginModal .modal-content{
+    border: 5px solid var(--lavanda_claro);
+} 
 #authTab .nav-link.active, #loginModal .modal-header {
-    background-color: var(--coral_claro)
+    border: 0;
+    background-color: var(--lavanda_claro)
 }
 #authTab .nav-link.active {
-    background-color: #F4A896; /* Coral pálido */
-    color: white;
+    background-color: var(--lavanda); /* Coral pálido */
+    color: var(--negro_suave);
+    font-weight: bolder;
     border-radius: 6px 6px 0 0;
 }
-
+#authTab li button {
+    width: 215px;
+    height: 55px;
+}
 #authTab .nav-link:hover {
-    background-color: #F5C1B0; /* Rojo salmón claro */
-    color: white;
+    background-color: var(--lavanda_hover);
+    color: var(--lavanda_oscuro);
+    font-weight: bolder;
 }
 
 /* === Contenido de cada tab === */
 #login-tab-pane,
 #register-tab-pane {
-    background-color: #FAF9F6; /* Marfil cálido */
+    background-color: var(--blanco);
     padding: 1rem;
     border-radius: 0 0 8px 8px;
-    border: 1px solid #DADADA;
     border-top: none;
 }
 
+#loginModal #login-tab-pane > form > div, #loginModal #register-tab-pane > form > div { width: 100%; }
+
 /* === Inputs y botones === */
+#loginModal label.form-label { font-weight: bolder; font-size: 18px;}
+
+#loginModal input.form-control#registerNombre,
+#loginModal input.form-control#registerNombreUsuario,
+#loginModal input.form-control#registerEmail,
+#loginModal input.form-control#registerPassword,
+#loginModal input.form-control#confirmPassword,
+#loginModal input.form-control#loginEmail,
+#loginModal input.form-control#loginPassword {width: 100%;font-size: 1.25rem;text-align: left;padding: 5px 15px;}
+
 #loginModal .form-control {
-    border: 1px solid #B0B0B0; /* Gris claro */
+    border: 1px solid #B0B0B0;
     border-radius: 4px;
 }
 
 #loginModal .form-control:focus {
-    border-color: #77C3B1; /* Verde jade */
-    box-shadow: 0 0 0 0.15rem rgba(119, 195, 177, 0.4);
+    border-color: var(--lavanda_oscuro);
+    box-shadow: 0 0 0 0.15rem var(--lavanda_hover);
 }
 
 #loginModal button[type="submit"] {
-    background-color: #F4A896; /* Coral pálido */
-    border-color: #F4A896;
-    color: white;
+    background-color: var(--lavanda);
+    border-color: var(--lavanda_oscuro);
+    color: var(--negro_suave);
+    font-weight: 500;
+    font-size: 19px;
     transition: background-color 0.3s ease;
 }
 
 #loginModal button[type="submit"]:hover {
-    background-color: #F5C1B0; /* Rojo salmón claro */
-    border-color: #F5C1B0;
+    background-color: var(--lavanda_claro);
+    color: var(--negro_suave);
+    font-weight: bolder;
+    border: 3px solid var(--lavanda_hover);
 }
+
 
 
 /* *-*-*-*-* NAV STYLE *-*-*-*-* */
 header nav{ margin-top: 6px; }
-header nav ul.navbar-nav a.btn-secondary{ font-family: 'Nunito'; text-decoration: none; font-weight: bold; border-radius: 0.5rem; padding: 0.6rem 1.2rem; font-size: 0.95rem; cursor: pointer; transition: filter 0.3s;}
+header nav ul.navbar-nav a.btn-secondary{font-family: 'Nunito';text-decoration: none;font-weight: bold;border-radius: 0.5rem;padding: 0.6rem 1.2rem;font-size: 0.95rem;cursor: pointer;transition: filter 0.3s;}
 header div.navbar-collapse ul.navbar-nav { gap: 10px; }
-header div.navbar-collapse ul.navbar-nav li { width: 115px; text-align: center;}
-header ul.navbar-nav a.btn-login { background-color: var(--azul-marino); border: 3px solid var(--azul_negro_oscuro); color: var(--blanco)!important; }
-header ul.navbar-nav a.btn-register { color: var(--negro); background-color: var(--blanco); border: 3px solid var(--azul_negro_oscuro); }
-header ul.navbar-nav a.btn-perfil { background-color: var(--azul_claro); border: 3px solid var(--azul_cielo); color: var(--negro); }
-header ul.navbar-nav a.btn-logout { color: var(--negro); background-color: var(--coral_claro); border: 3px solid var(--coral);  }
+header div.navbar-collapse ul.navbar-nav li {width: 150px;text-align: center;}
+header ul.navbar-nav a.btn-login {background-color: var(--azul-marino);border: 3px solid var(--azul_negro_oscuro);color: var(--blanco)!important; font-size: 20px !important; }
+header ul.navbar-nav a.btn-register { color: var(--negro)!important; background-color: var(--blanco); border: 3px solid var(--azul_negro_oscuro); font-size: 20px !important; }
+header ul.navbar-nav a.btn-perfil { background-color: var(--azul_claro); border: 3px solid var(--azul_cielo); color: var(--negro); font-size: 20px !important; }
+header ul.navbar-nav a.btn-logout { color: var(--negro); background-color: var(--coral_claro); border: 3px solid var(--coral); font-size: 20px !important; }
+
 
 /* *-*-*-*-* HOME STYLE *-*-*-*-* */
 .vista-home .top-icons { display: flex; justify-content: flex-end; gap: 1rem; padding: 1rem 2rem 0 0; }
@@ -193,8 +196,8 @@ h2#titleJuegos { font-weight: bold; text-align: center; font-size: xxx-large; }
 .vista-lista-juegos .card.calcRapido { background-color: var(--azul_claro); }
 .vista-lista-juegos .card.completaOp { background-color: var(--lavanda_claro); }
 .vista-lista-juegos .card.findPatron { background-color: var(--naranja_claro); }
-.vista-lista-juegos .card.memoGame { background-color: var(--amarillo_claro); }
-.vista-lista-juegos .card.keepSequence { background-color: var(--coral_claro); }
+.vista-lista-juegos .card.memoGame { background-color: var(--coral_claro); }
+.vista-lista-juegos .card.keepSequence { background-color: var(--amarillo_claro); }
 .vista-lista-juegos .card.hanoiTower { background-color: var(--verde_claro); }
 .vista-lista-juegos .btn-secondary:focus { box-shadow: none; }
 /* === Imagen dentro de la tarjeta === */
@@ -205,8 +208,8 @@ h2#titleJuegos { font-weight: bold; text-align: center; font-size: xxx-large; }
 .vista-lista-juegos .card.calcRapido .btn-secondary:hover { background-color: var(--azul_cielo); }
 .vista-lista-juegos .card.completaOp .btn-secondary:hover { background-color: var(--lavanda); }
 .vista-lista-juegos .card.findPatron .btn-secondary:hover { background-color: var(--naranja); }
-.vista-lista-juegos .card.memoGame .btn-secondary:hover { background-color: var(--amarillo); }
-.vista-lista-juegos .card.keepSequence .btn-secondary:hover { background-color: var(--coral); }
+.vista-lista-juegos .card.memoGame .btn-secondary:hover { background-color: var(--coral); }
+.vista-lista-juegos .card.keepSequence .btn-secondary:hover { background-color: var(--amarillo); }
 .vista-lista-juegos .card.hanoiTower .btn-secondary:hover { background-color: var(--verde_menta); }
 
 
