@@ -61,8 +61,8 @@ span.addVerdeColor { color: var(--verde_menta); }
 /* === Modal personalizado con paleta === */
 #loginModal .modal-content {
     background-color: #FAFAF7; /* Marfil suave */
-    border: 2px solid #DADADA; /* Gris claro neutro */
-    border-radius: 10px;
+    border: 5px solid var(--negro_suave);
+    border-radius: 8px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
@@ -70,6 +70,7 @@ span.addVerdeColor { color: var(--verde_menta); }
     background-color: #9AB4C2; /* Azul suave grisáceo */
     color: #404040; /* Gris ceniza */
     border-bottom: 1px solid #B0B0B0; /* Gris claro */
+    padding-bottom: 0;
 }
 
 #loginModal .modal-title {
@@ -89,16 +90,20 @@ span.addVerdeColor { color: var(--verde_menta); }
     font-weight: 500;
 }
 
-    #authTab .nav-link.active {
-        background-color: #F4A896; /* Coral pálido */
-        color: white;
-        border-radius: 6px 6px 0 0;
-    }
 
-    #authTab .nav-link:hover {
-        background-color: #F5C1B0; /* Rojo salmón claro */
-        color: white;
-    }
+#authTab .nav-link.active, #loginModal .modal-header {
+    background-color: var(--coral_claro)
+}
+#authTab .nav-link.active {
+    background-color: #F4A896; /* Coral pálido */
+    color: white;
+    border-radius: 6px 6px 0 0;
+}
+
+#authTab .nav-link:hover {
+    background-color: #F5C1B0; /* Rojo salmón claro */
+    color: white;
+}
 
 /* === Contenido de cada tab === */
 #login-tab-pane,
@@ -116,10 +121,10 @@ span.addVerdeColor { color: var(--verde_menta); }
     border-radius: 4px;
 }
 
-    #loginModal .form-control:focus {
-        border-color: #77C3B1; /* Verde jade */
-        box-shadow: 0 0 0 0.15rem rgba(119, 195, 177, 0.4);
-    }
+#loginModal .form-control:focus {
+    border-color: #77C3B1; /* Verde jade */
+    box-shadow: 0 0 0 0.15rem rgba(119, 195, 177, 0.4);
+}
 
 #loginModal button[type="submit"] {
     background-color: #F4A896; /* Coral pálido */
@@ -128,12 +133,21 @@ span.addVerdeColor { color: var(--verde_menta); }
     transition: background-color 0.3s ease;
 }
 
-    #loginModal button[type="submit"]:hover {
-        background-color: #F5C1B0; /* Rojo salmón claro */
-        border-color: #F5C1B0;
-    }
+#loginModal button[type="submit"]:hover {
+    background-color: #F5C1B0; /* Rojo salmón claro */
+    border-color: #F5C1B0;
+}
 
 
+/* *-*-*-*-* NAV STYLE *-*-*-*-* */
+header nav{ margin-top: 6px; }
+header nav ul.navbar-nav a.btn-secondary{ font-family: 'Nunito'; text-decoration: none; font-weight: bold; border-radius: 0.5rem; padding: 0.6rem 1.2rem; font-size: 0.95rem; cursor: pointer; transition: filter 0.3s;}
+header div.navbar-collapse ul.navbar-nav { gap: 10px; }
+header div.navbar-collapse ul.navbar-nav li { width: 115px; text-align: center;}
+header ul.navbar-nav a.btn-login { background-color: var(--azul-marino); border: 3px solid var(--azul_negro_oscuro); color: var(--blanco)!important; }
+header ul.navbar-nav a.btn-register { color: var(--negro); background-color: var(--blanco); border: 3px solid var(--azul_negro_oscuro); }
+header ul.navbar-nav a.btn-perfil { background-color: var(--azul_claro); border: 3px solid var(--azul_cielo); color: var(--negro); }
+header ul.navbar-nav a.btn-logout { color: var(--negro); background-color: var(--coral_claro); border: 3px solid var(--coral);  }
 
 /* *-*-*-*-* HOME STYLE *-*-*-*-* */
 .vista-home .top-icons { display: flex; justify-content: flex-end; gap: 1rem; padding: 1rem 2rem 0 0; }
