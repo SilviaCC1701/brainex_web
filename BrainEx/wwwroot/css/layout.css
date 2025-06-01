@@ -76,7 +76,7 @@ span.addVerdeColor { color: var(--verde_menta); }
     background-color: var(--lavanda_claro)
 }
 #authTab .nav-link.active {
-    background-color: var(--lavanda); /* Coral pálido */
+    background-color: var(--lavanda);
     color: var(--negro_suave);
     font-weight: bolder;
     border-radius: 6px 6px 0 0;
@@ -256,7 +256,7 @@ h2#titleJuegos { font-weight: bold; text-align: center; font-size: xxx-large; }
 .vista-perfil .dato-fullname, .dato-username, .dato-email {font-weight: lighter;}
 .vista-perfil .datos-dcha {text-align: center;min-width: 150px;flex: 1;}
 .vista-perfil .datos-dcha .dato {font-weight: bold;font-size: 2rem;margin: 0;}
-.vista-perfil .dato-edad {display: block;font-size: 5rem;font-weight: bold;color: #6EB5FF;/* margin-top: 0.3rem; */}
+.vista-perfil .dato-edad {display: block;font-size: 5rem;font-weight: bold;color: #6EB5FF;}
 .vista-perfil .container-partidas { margin-top: 2rem; }
 .vista-perfil .title-second {font-size: 1.85rem;margin-bottom: 1rem;font-weight: 600;}
 .vista-perfil table { font-size: 19px; width: 100%; border-collapse: collapse; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
