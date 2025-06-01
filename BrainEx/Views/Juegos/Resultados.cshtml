@@ -1,0 +1,44 @@
+﻿@model dynamic
+@{
+    ViewData["Title"] = "Resultados";
+    //string partidaId = Context.Request.Query["PartidaID"];
+    //var tipoPartida = partidaId.Split('_')[1];
+}
+@{
+    string partialPath = null;
+
+    switch (Model.GetType().Name)
+    {
+        case "ResultadoCalculoRapido":
+            partialPath = "~/Views/Perfil/Bloques/BloqCalcRapido.cshtml";
+            break;
+        case "ResultadoCompletaOperacion":
+            partialPath = "~/Views/Perfil/Bloques/BloqCompletaOp.cshtml";
+            break;
+        case "ResultadoEncuentraPatron":
+            partialPath = "~/Views/Perfil/Bloques/BloqFindPatron.cshtml";
+            break;
+        case "ResultadoMemoryGame":
+            partialPath = "~/Views/Perfil/Bloques/BloqMemoGame.cshtml";
+            break;
+        case "ResultadoSigueSecuencia":
+            partialPath = "~/Views/Perfil/Bloques/BloqKeepSeq.cshtml";
+            break;
+        case "ResultadoTorreHanoi":
+            partialPath = "~/Views/Perfil/Bloques/BloqTowerHanoi.cshtml";
+            break;
+        case "CEC":
+            break;
+    }
+}
+
+<div class="vista-detalles-partida">
+    <h1 class="titulo">Resultados</h1>
+    <div class="container-de-bloques">
+        @if (partialPath != null)
+        {
+            @Html.Partial(partialPath, (object)Model)
+        }
+    </div>
+</div>
+

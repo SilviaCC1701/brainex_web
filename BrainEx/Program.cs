@@ -3,6 +3,13 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromHours(1);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
@@ -38,6 +45,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseCors();
+app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 

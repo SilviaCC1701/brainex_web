@@ -17,11 +17,15 @@
             <h2>¡Finalizado!</h2>
             @if (esJuegos)
             {
-                <div id="result-stats" class="stats-container"></div>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a id="ver-resultados-btn" class="btn btn-primary btn-lg" href="#">Ver resultados</a>
+                </div>
             }
             else
             {
-                <button id="next-game-btn" class="next-button" onclick="location.href='/CalcBrainAge/MemoryGame'">Siguiente juego</button>
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="/CalcBrainAge/MemoryGame" class="btn btn-primary btn-lg">Siguiente juego</a>
+                </div>
             }
         </div>
     </div>
@@ -31,22 +35,19 @@
     <audio id="sound-end" src="/sounds/end.mp3" preload="auto"></audio>
 </div>
 
-@if (!esJuegos)
-{
-    <style>
-        .next-button {
-            font-size: 2rem;
-            padding: 1rem 2rem;
-            margin-top: 3rem;
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-        }
+<style>
+    .next-button {
+        font-size: 2rem;
+        padding: 1rem 2rem;
+        margin-top: 3rem;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+    }
 
-            .next-button:hover {
-                background-color: #388e3c;
-            }
-    </style>
-}
+        .next-button:hover {
+            background-color: #388e3c;
+        }
+</style>

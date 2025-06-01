@@ -68,40 +68,57 @@
             pegs[1].querySelectorAll('.disk').length === totalDisks ||
             pegs[2].querySelectorAll('.disk').length === totalDisks;
 
-        if (isWin) {
-            const totalTime = ((performance.now() - startTime) / 1000).toFixed(2);
-            resultScreen.classList.remove('hidden');
-            resultScreen.innerHTML = `
-            <h2>¡Completado!</h2>
-            <p>¡Has resuelto la Torre de Hanoi!</p>
-            <p>Movimientos: <strong>${moveCount}</strong></p>
-            <p>Tiempo total: <strong>${totalTime} segundos</strong></p>`;
+        if (!isWin) return;
 
-            // Enviar a la API
-            const payload = {
-                game: "torre-hanoi",
-                data: {
-                    totalDisks,
-                    moveCount,
-                    timeElapsed: +totalTime,
-                    optimalMoves: Math.pow(2, totalDisks) - 1,
-                    efficiency: +((Math.pow(2, totalDisks) - 1) / moveCount * 100).toFixed(1)
+        const totalTime = ((performance.now() - startTime) / 1000).toFixed(2);
+        resultScreen.classList.remove('hidden');
+
+        const payload = {
+            game: "torre_hanoi",
+            data: {
+                totalDisks,
+                moveCount,
+                timeElapsed: +totalTime,
+                optimalMoves: Math.pow(2, totalDisks) - 1,
+                efficiency: +((Math.pow(2, totalDisks) - 1) / moveCount * 100).toFixed(1)
+            }
+        };
+
+        fetch('/juegos/enviardatos', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        }).catch(err => {
+            console.warn("No se pudo enviar la estadística:", err);
+        });
+
+        const verBtn = document.getElementById("ver-resultados-btn");
+        if (verBtn) {
+            verBtn.addEventListener("click", async (e) => {
+                e.preventDefault();
+
+                try {
+                    const res = await fetch("/Juegos/ResultadosTemp", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (res.ok) {
+                        window.location.href = "/Juegos/TorreHanoi/Resultados";
+                    } else {
+                        console.error("Error al guardar resultados:", await res.text());
+                        alert("Hubo un problema al guardar los resultados.");
+                    }
+                } catch (err) {
+                    console.error("Error de red:", err);
+                    alert("Error de conexión al enviar los resultados.");
                 }
-            };
-
-            fetch('/juegos/enviardatos', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            })
-                .then(res => res.ok ? res.text() : Promise.reject(res.statusText))
-                .then(msg => console.log('✅ Datos enviados:', msg))
-                .catch(err => console.error('❌ Error al enviar datos:', err));
+            });
         }
     }
-
 
     function startCountdown() {
         let count = 3;

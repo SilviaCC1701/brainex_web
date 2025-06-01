@@ -169,90 +169,10 @@
     function endGame() {
         grid.innerHTML = '';
         resultScreen.classList.remove('hidden');
-        scoreDisplay.textContent = roundPerfectFlags.filter(v => v).length;
         soundEnd.play();
 
-        const totalTime = ((performance.now() - startTime) / 1000).toFixed(2);
-        const totalFails = attemptsPerRound.reduce((a, b) => a + b, 0);
-        const precision = totalRounds > 0 ? ((roundPerfectFlags.filter(v => v).length / totalRounds) * 100).toFixed(1) : '0';
-
-        const statsHTML = `
-            <p>Tiempo total: <strong>${totalTime} s</strong></p>
-            <p>Tiempo medio por fase: <strong>${(
-                timesPerRound.reduce((a, b) => a + b, 0) / timesPerRound.length / 1000
-            ).toFixed(2)} s</strong></p>
-            <p>Aciertos a la primera: <strong>${roundPerfectFlags.filter(v => v).length} / ${totalRounds}</strong></p>
-            <p>Precisión total: <strong>${precision}%</strong></p>
-            <p>Fallos totales: <strong>${totalFails}</strong></p>
-            <p>Intentos por fase:</p>
-            <ul style="text-align: left;">
-                ${attemptsPerRound
-                .map((a, i) => `<li>Fase ${i + 1}: ${a} fallos</li>`)
-                .join('')}
-            </ul>
-        `;
-        resultScreen.insertAdjacentHTML('beforeend', statsHTML);
-        // Gráfico de tiempo por ronda
-        const ctx = document.getElementById('timeChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: timesPerRound.map((_, i) => `Fase ${i + 1}`),
-                datasets: [{
-                    label: 'Tiempo (s)',
-                    data: timesPerRound.map(t => +(t / 1000).toFixed(2)),
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    fill: true,
-                    tension: 0.3,
-                    pointRadius: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Tiempo (s)'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Rondas'
-                        }
-                    }
-                }
-            }
-        });
-
-        // Gráfico de precisión
-        const ctx2 = document.getElementById('accuracyChart').getContext('2d');
-        new Chart(ctx2, {
-            type: 'doughnut',
-            data: {
-                labels: ['Aciertos a la primera', 'Con fallos'],
-                datasets: [{
-                    data: [roundPerfectFlags.filter(v => v).length, totalRounds - roundPerfectFlags.filter(v => v).length],
-                    backgroundColor: ['#4caf50', '#f44336'],
-                    borderColor: ['#388e3c', '#c62828'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    }
-                }
-            }
-        });
-
-
         const payload = {
-            game: "sigue-secuencia",
+            game: "sigue_secuencia",
             data: {
                 attemptsPerRound,
                 timesPerRound: timesPerRound.map(t => +(t / 1000).toFixed(3)),
@@ -266,8 +186,36 @@
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(payload)
+        }).catch(err => {
+            console.warn("No se pudo enviar la estadística:", err);
         });
+
+        const verBtn = document.getElementById("ver-resultados-btn");
+        if (verBtn) {
+            verBtn.addEventListener("click", async (e) => {
+                e.preventDefault();
+
+                try {
+                    const res = await fetch("/Juegos/ResultadosTemp", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (res.ok) {
+                        window.location.href = "/Juegos/SigueSecuencia/Resultados";
+                    } else {
+                        console.error("Error al guardar resultados:", await res.text());
+                        alert("Hubo un problema al guardar los resultados.");
+                    }
+                } catch (err) {
+                    console.error("Error de red:", err);
+                    alert("Error de conexión al enviar los resultados.");
+                }
+            });
+        }
     }
+
 
     function startCountdown() {
         let count = 3;
