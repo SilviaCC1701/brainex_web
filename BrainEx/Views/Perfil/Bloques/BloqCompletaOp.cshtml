@@ -54,80 +54,81 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-	const operations = [
-	@foreach (var op in Model.DetallePorOperacion)
-	{
-		@: "@op.Operacion",
-	}
-	];
+	(function() {
+		const operations = [
+		@foreach (var op in Model.DetallePorOperacion)
+		{
+			@: "@op.Operacion",
+		}
+		];
 
-	const timesPerOp = [
-	@foreach (var op in Model.DetallePorOperacion)
-	{
-		@: @op.Tiempo,
-	}
-	];
+		const timesPerOp = [
+		@foreach (var op in Model.DetallePorOperacion)
+		{
+			@: @op.Tiempo,
+		}
+		];
 
-	const ctxLine = document.getElementById('timeChartCompletaOp').getContext('2d');
-	new Chart(ctxLine, {
-		type: 'line',
-		data: {
-			labels: operations,
-			datasets: [{
-				label: 'Tiempo por operación (s)',
-				data: timesPerOp,
-				borderColor: 'rgba(75, 192, 192, 1)',
-				backgroundColor: 'rgba(75, 192, 192, 0.2)',
-				fill: true,
-				tension: 0.3,
-				pointRadius: 4
-			}]
-		},
-		options: {
-			responsive: true,
-			maintainAspectRatio: false,
-			scales: {
-				y: {
-					beginAtZero: true,
-					title: {
-						display: true,
-						text: 'Tiempo (s)'
-					}
-				},
-				x: {
-					title: {
-						display: true,
-						text: 'Operaciones'
+		const ctxLine = document.getElementById('timeChartCompletaOp').getContext('2d');
+		new Chart(ctxLine, {
+			type: 'line',
+			data: {
+				labels: operations,
+				datasets: [{
+					label: 'Tiempo por operación (s)',
+					data: timesPerOp,
+					borderColor: 'rgba(75, 192, 192, 1)',
+					backgroundColor: 'rgba(75, 192, 192, 0.2)',
+					fill: true,
+					tension: 0.3,
+					pointRadius: 4
+				}]
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				scales: {
+					y: {
+						beginAtZero: true,
+						title: {
+							display: true,
+							text: 'Tiempo (s)'
+						}
+					},
+					x: {
+						title: {
+							display: true,
+							text: 'Operaciones'
+						}
 					}
 				}
 			}
-		}
-	});
+		});
 
-	const ctxPie = document.getElementById('accuracyChartCompletaOp').getContext('2d');
-	new Chart(ctxPie, {
-		type: 'pie',
-		data: {
-			labels: ['Aciertos 1er intento', 'Con fallos'],
-			datasets: [{
-				data: [@Model.AciertosPrimera, @(Model.FallosTotales)],
-				backgroundColor: [
-					'rgba(54, 162, 235, 0.6)',
-					'rgba(255, 99, 132, 0.6)'
-				],
-				borderColor: [
-					'rgba(54, 162, 235, 1)',
-					'rgba(255, 99, 132, 1)'
-				],
-				borderWidth: 1
-			}]
-		},
-		options: {
-			responsive: true,
-			maintainAspectRatio: false
-		}
-	});
-
+		const ctxPie = document.getElementById('accuracyChartCompletaOp').getContext('2d');
+		new Chart(ctxPie, {
+			type: 'pie',
+			data: {
+				labels: ['Aciertos 1er intento', 'Con fallos'],
+				datasets: [{
+					data: [@Model.AciertosPrimera, @(Model.FallosTotales)],
+					backgroundColor: [
+						'rgba(54, 162, 235, 0.6)',
+						'rgba(255, 99, 132, 0.6)'
+					],
+					borderColor: [
+						'rgba(54, 162, 235, 1)',
+						'rgba(255, 99, 132, 1)'
+					],
+					borderWidth: 1
+				}]
+			},
+			options: {
+				responsive: true,
+				maintainAspectRatio: false
+			}
+		});
+	})();
 </script>
 <style>
 	#timeChartCompletaOp, #accuracyChartCompletaOp {

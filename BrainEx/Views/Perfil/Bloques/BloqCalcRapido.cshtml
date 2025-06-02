@@ -57,6 +57,7 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+	(function() {
 	const operations = [
 	@foreach (var op in Model.DetallePorOperacion)
 	{
@@ -130,7 +131,7 @@
 			maintainAspectRatio: false
 		}
 	});
-
+	})();
 </script>
 <style>
 	#timeChartCalcRapido, #accuracyChartCalcRapido {
