@@ -17,7 +17,7 @@ namespace BrainEx.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> Resultados3()
+        public async Task<IActionResult> Resultados()
         {
             try
             {
@@ -38,10 +38,6 @@ namespace BrainEx.Controllers
                 }
 
                 var jsonRequest = JsonSerializer.Serialize(datos, new JsonSerializerOptions { WriteIndented = true });
-
-                Console.WriteLine("🔍 JSON para enviar a /api/EdadCerebral/calcular:");
-                Console.WriteLine(jsonRequest);
-
                 var baseUrl = Environment.GetEnvironmentVariable("ApiBaseUrl");
                 if (string.IsNullOrEmpty(baseUrl))
                 {
@@ -97,7 +93,7 @@ namespace BrainEx.Controllers
             }
         }
 
-        public async Task<IActionResult> Resultados()
+        public async Task<IActionResult> Resultados2()
         {
             try
             {

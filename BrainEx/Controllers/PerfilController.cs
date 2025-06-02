@@ -60,7 +60,15 @@ namespace BrainEx.Controllers
             if (string.IsNullOrEmpty(guid)) { return RedirectToAction("Index", "Home"); }
 
             var proxyUrl = Environment.GetEnvironmentVariable("ApiBaseUrl");
-            var targetEndpoint = $"/api/Usuarios/partida/{guid}/{PartidaID}";
+            var targetEndpoint = string.Empty;
+            if (PartidaID.Contains("edad_cerebral"))
+            {
+                targetEndpoint = $"/api/EdadCerebral/partida/{guid}/{PartidaID}";
+            }
+            else
+            {
+                targetEndpoint = $"/api/Usuarios/partida/{guid}/{PartidaID}";
+            }
 
             using var httpClient = new HttpClient();
             var partidaResponse = httpClient.GetAsync($"{proxyUrl}{targetEndpoint}");
@@ -95,8 +103,8 @@ namespace BrainEx.Controllers
                 case "torre_hanoi":
                     resultadoModelo = JsonSerializer.Deserialize<ResultadoTorreHanoi>(detallesPartidaJson, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                     break;
-                case "CEC":
-                    //resultadoModelo = JsonSerializer.Deserialize<ResultadoCEC>(detallesPartidaJson, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                case "edad_cerebral":
+                    resultadoModelo = JsonSerializer.Deserialize<EdadCerebralResultado>(detallesPartidaJson, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                     break;
             }
 

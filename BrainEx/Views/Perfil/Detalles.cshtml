@@ -41,20 +41,27 @@
             tituloTXT = "Torre Hanoi";
             partialPath = "~/Views/Perfil/Bloques/BloqTowerHanoi.cshtml";
             break;
-        case "CEC":
+        case "EdadCerebralResultado":
             colorTitulo = "addAzulColor";
             tituloTXT = "Calculo Edad Cerebral";
+            partialPath = "~/Views/Perfil/Bloques/BloqCalcAgeBrain.cshtml";
+            partialPath = "~/Views/CalcBrainAge/Resultados.cshtml";
             break;
     }
 }
-
-<h1 id="titulo">Resultados de <span class="@colorTitulo">@tituloTXT</span></h1>
-<div class="vista-detalles-partida">
-    <div class="container-de-bloques">
-        @if (partialPath != null)
-        {
-            @Html.Partial(partialPath, (object)Model)
-        }
+@if (tituloTXT == "Calculo Edad Cerebral")
+{
+    @Html.Partial(partialPath, (object)Model)
+}
+else
+{
+    <h1 id="titulo">Resultados de <span class="@colorTitulo">@tituloTXT</span></h1>
+    <div class="vista-detalles-partida">
+        <div class="container-de-bloques">
+            @if (partialPath != null)
+            {
+                @Html.Partial(partialPath, (object)Model)
+            }
+        </div>
     </div>
-</div>
-
+}
