@@ -4,6 +4,7 @@ using BrainEx.Models.Resultados;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System.Diagnostics;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
@@ -16,62 +17,92 @@ namespace BrainEx.Controllers
         {
             return View();
         }
-        //public async Task<IActionResult> Resultados()
-        //{
-        //    try
-        //    {
-        //        var json = HttpContext.Session.GetString("CalculoEdadCerebral");
-        //        if (string.IsNullOrWhiteSpace(json))
-        //            return RedirectToAction("Index", "CalcBrainAge");
+        public async Task<IActionResult> Resultados3()
+        {
+            try
+            {
+                var json = HttpContext.Session.GetString("CalculoEdadCerebral");
+                if (string.IsNullOrWhiteSpace(json))
+                {
+                    return RedirectToAction("Index", "CalcBrainAge");
+                }
 
-        //        var datos = JsonSerializer.Deserialize<EdadCerebralRequest>(json);
-        //        if (datos == null ||
-        //            datos.FechaInicio == default || datos.FechaFin == null ||
-        //            datos.Juego1 == null || datos.Juego2 == null ||
-        //            datos.Juego3 == null || datos.Juego4 == null ||
-        //            datos.Juego5 == null || datos.Juego6 == null)
-        //        {
-        //            return RedirectToAction("Index", "CalcBrainAge");
-        //        }
+                var datos = JsonSerializer.Deserialize<EdadCerebralRequest>(json);
+                if (datos == null ||
+                    datos.FechaInicio == default || datos.FechaFin == null ||
+                    datos.Juego1 == null || datos.Juego2 == null ||
+                    datos.Juego3 == null || datos.Juego4 == null ||
+                    datos.Juego5 == null || datos.Juego6 == null)
+                {
+                    return RedirectToAction("Index", "CalcBrainAge");
+                }
 
-        //        var jsonRequest = JsonSerializer.Serialize(datos, new JsonSerializerOptions { WriteIndented = true });
+                var jsonRequest = JsonSerializer.Serialize(datos, new JsonSerializerOptions { WriteIndented = true });
 
-        //        Console.WriteLine("🔍 JSON para enviar a /api/EdadCerebral/calcular:");
-        //        Console.WriteLine(jsonRequest);
+                Console.WriteLine("🔍 JSON para enviar a /api/EdadCerebral/calcular:");
+                Console.WriteLine(jsonRequest);
 
-        //        var baseUrl = Environment.GetEnvironmentVariable("ApiBaseUrl");
-        //        if (string.IsNullOrEmpty(baseUrl))
-        //            return StatusCode(500, "No se ha definido la URL base de la API");
+                var baseUrl = Environment.GetEnvironmentVariable("ApiBaseUrl");
+                if (string.IsNullOrEmpty(baseUrl))
+                {
+                    return StatusCode(500, "No se ha definido la URL base de la API");
+                }
 
-        //        using var httpClient = new HttpClient();
-        //        var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+                using var httpClient = new HttpClient();
+                var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
 
-        //        var response = await httpClient.PostAsync($"{baseUrl}/api/EdadCerebral/calcular", content);
-        //        if (!response.IsSuccessStatusCode)
-        //            return StatusCode((int)response.StatusCode, "Error al enviar datos a la API de edad cerebral");
+                var response = await httpClient.PostAsync($"{baseUrl}/api/EdadCerebral/calcular", content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return StatusCode((int)response.StatusCode, "Error al enviar datos a la API de edad cerebral");
+                }
 
-        //        var responseContent = await response.Content.ReadAsStringAsync();
+                var responseContent = await response.Content.ReadAsStringAsync();
 
-        //        var options = new JsonSerializerOptions
-        //        {
-        //            PropertyNameCaseInsensitive = true
-        //        };
-        //        var resultado = JsonSerializer.Deserialize<EdadCerebralResultado>(responseContent, options);
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                var resultado = JsonSerializer.Deserialize<EdadCerebralResultado>(responseContent, options);
+                if (User.Identity?.IsAuthenticated == true)
+                {
+                    var guid = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+                    if (!string.IsNullOrEmpty(guid))
+                    {
+                        var postPayload = new
+                        {
+                            guid,
+                            timestamp = DateTime.UtcNow,
+                            resultado
+                        };
 
-        //        return View(resultado);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"Error al procesar resultados completos: {ex.Message}");
-        //        return RedirectToAction("Index", "CalcBrainAge");
-        //    }
-        //}
+                        var saveJson = JsonSerializer.Serialize(postPayload);
+                        var saveContent = new StringContent(saveJson, Encoding.UTF8, "application/json");
+
+                        var saveResponse = await httpClient.PostAsync($"{baseUrl}/api/EdadCerebral/guardar", saveContent);
+                        if (!saveResponse.IsSuccessStatusCode)
+                        {
+                            Console.WriteLine($"Error al guardar resultado: {saveResponse.StatusCode}");
+                        }
+                    }
+                }
+
+
+                return View(resultado);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al procesar resultados completos: {ex.Message}");
+                return RedirectToAction("Index", "CalcBrainAge");
+            }
+        }
 
         public async Task<IActionResult> Resultados()
         {
             try
             {
-
+                using var httpClient = new HttpClient();
+                var baseUrl = Environment.GetEnvironmentVariable("ApiBaseUrl");
                 var jsonSimulado = @"{
   ""edadEstimada"": 24,
   ""puntuacionGlobal"": 75,
@@ -364,6 +395,29 @@ namespace BrainEx.Controllers
                 };
 
                 var resultado = JsonSerializer.Deserialize<EdadCerebralResultado>(jsonSimulado, options);
+
+                if (User.Identity?.IsAuthenticated == true)
+                {
+                    var guid = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+                    if (!string.IsNullOrEmpty(guid))
+                    {
+                        var postPayload = new
+                        {
+                            guid,
+                            timestamp = DateTime.UtcNow,
+                            resultado
+                        };
+
+                        var saveJson = JsonSerializer.Serialize(postPayload);
+                        var saveContent = new StringContent(saveJson, Encoding.UTF8, "application/json");
+
+                        var saveResponse = await httpClient.PostAsync($"{baseUrl}/api/EdadCerebral/guardar", saveContent);
+                        if (!saveResponse.IsSuccessStatusCode)
+                        {
+                            Console.WriteLine($"Error al guardar resultado: {saveResponse.StatusCode}");
+                        }
+                    }
+                }
                 return View(resultado);
             }
             catch (Exception ex)
