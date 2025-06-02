@@ -298,14 +298,14 @@ h1#titulo { font-weight: 900; text-align: center; font-size: 60px; margin-bottom
 .vista-detalles-partida table td:first-child, .vista-detalles-partida table th:first-child { border-left: 2px solid var(--amarillo_table); }
 .vista-detalles-partida table td:last-child, .vista-detalles-partida table th:last-child { border-right: 2px solid var(--amarillo_table); }
 .vista-detalles-partida table td { font-size: 20px }
-#timeChart, #accuracyChart { width: 100%; height: 300px; display: block; border-radius: 0.5rem; }
+#timeChart, #accuracyChart {width: 100%;height: 300px;display: block;border-radius: 0.5rem;}
+#timeChartCalcRapido, #accuracyChartCalcRapido {width: 100%;height: 300px;display: block;border-radius: 0.5rem;}
+#timeChartCompletaOp, #accuracyChartCompletaOp {width: 100%;height: 300px;display: block;border-radius: 0.5rem;}
+#timeChartFindPatron, #accuracyChartFindPatron {width: 100%;height: 300px;display: block;border-radius: 0.5rem;}
+#timeChartKeepSeq, #accuracyChartKeepSeq {width: 100%;height: 300px;display: block;border-radius: 0.5rem;}
+#timeChartMemoGame, #accuracyChartMemoGame {width: 100%;height: 300px;display: block;border-radius: 0.5rem;}
 .vista-detalles-partida ul { list-style: disc; padding-left: 1.5rem; line-height: 1.6; }
 
 /* *-*-*-*-* DETALLES CEC STYLE *-*-*-*-* */
-.resultadadosCEC h3#titulo {
-    font-weight: 900;
-    text-align: center;
-    font-size: 40px;
-    margin-bottom: 0.5rem;
-}
+h3.titleResultados#titulo { font-weight: 900; text-align: center; font-size: 40px; margin-bottom: 0.5rem; }
 
