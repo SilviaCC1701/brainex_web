@@ -1,7 +1,6 @@
 ﻿@model BrainEx.Models.UsuarioDatosPerfil
 @{
 	ViewData["Title"] = "Perfil de Usuario";
-
 }
 
 <div class="vista-perfil">
@@ -14,7 +13,7 @@
 		</div>
 		<div class="datos-dcha">
 			<p class="dato">Edad Cerebral</p>
-			<span class="dato-edad">25</span>
+			<span class="dato-edad">@Model.EdadCerebral</span>
 		</div>
 	</div>
 	<div class="container-partidas">

@@ -26,6 +26,8 @@ namespace BrainEx.Controllers
             var proxyUrl = Environment.GetEnvironmentVariable("ApiBaseUrl");
             var targetEndpoint = $"/api/Usuarios/info-user/{guid}";
             var partidasEndpoint = $"/api/Usuarios/partidas/{guid}";
+            var edadEndpoint = $"{proxyUrl}/api/EdadCerebral/ultima-edad?guid={guid}";
+
 
             using var httpClient = new HttpClient();
             var userResponse = httpClient.GetAsync($"{proxyUrl}{targetEndpoint}");
@@ -42,11 +44,21 @@ namespace BrainEx.Controllers
             var user = JsonSerializer.Deserialize<User>(userJson, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             var partidas = JsonSerializer.Deserialize<List<PartidaItem>>(partidasJson.Result, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
+            var edadHttpResponse = await httpClient.GetAsync(edadEndpoint);
+            string edadString = "?";
+
+            if (edadHttpResponse.IsSuccessStatusCode)
+            {
+                var rawEdad = await edadHttpResponse.Content.ReadAsStringAsync();
+                edadString = string.IsNullOrWhiteSpace(rawEdad) ? "?" : rawEdad;
+            }
+
             //Comprobar de que vengan datos o redirigir a la home
             var model = new UsuarioDatosPerfil
             {
                 Usuario = user,
-                Partidas = partidas ?? new List<PartidaItem>()
+                Partidas = partidas ?? new List<PartidaItem>(),
+                EdadCerebral = edadString
             };
             return View(model);
         }
