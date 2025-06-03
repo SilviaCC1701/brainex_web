@@ -5,11 +5,24 @@
     ViewData["Title"] = "Calculo Rapido";
 }
 <div id="@gameId" class="game-wrapper">
-    <div id="start-screen" class="start-screen">
-        <h2>Presiona cualquier tecla para comenzar</h2>
+    <div class="vista-cec">
+        <h2 id="titleCEC">Calculo <span class="addAzulColor">Rápido</span></h2>
+        <div class="grupo-enlaces">
+            <a class="btn-secondary btn-play-game">Empezar a jugar</a>
+            <p class="descripcion">Resuelve operaciones lo más rápido posible. ¿Que tan ágil eres mentalmente?</p>
+        </div>
+
+        <div class="figurasCSS">
+            <span class="figurita cuadradoVerde relleno"></span>
+            <span class="figurita circuloAzul"></span>
+            <span class="figurita trianguloLavanda relleno"></span>
+            <span class="figurita cuadradoVerde"></span>
+            <span class="figurita circuloAzul relleno"></span>
+            <span class="figurita triangleLavanda"></span>
+        </div>
     </div>
 
-    <div id="countdown" class="countdown">3</div>
+    <div id="countdown" class="countdown hidden">3</div>
 
     <div class="container hidden" id="game-container">
         <div id="prev-operation" class="operation small"></div>
@@ -21,19 +34,17 @@
 
         <div id="next-operation" class="operation small">5 - 2</div>
 
-        <div id="result-screen" class="hidden" style="text-align:center;">
-            <h2>¡Finalizado!</h2>
-
+        <div id="result-screen" class="hidden vista-cec" style="text-align:center;">
             @if (esJuegos)
             {
-                <div style="text-align: center; margin-top: 30px;">
-                    <a id="ver-resultados-btn" class="btn btn-primary btn-lg" href="#">Ver resultados</a>
+                <div class="grupo-enlaces">
+                    <a id="ver-resultados-btn" class="btn-secondary btn-play-game">Ver Resultados</a>
                 </div>
             }
             else
             {
-                <div style="text-align: center; margin-top: 30px;">
-                    <a href="/CalcBrainAge/SigueSecuencia" class="btn btn-primary btn-lg">Siguiente juego</a>
+                <div class="grupo-enlaces">
+                    <a id="ver-resultados-btn" class="btn-secondary btn-play-game">Ver Resultados</a>
                 </div>
             }
         </div>
@@ -43,20 +54,3 @@
 <audio id="sound-start" src="/sounds/start.mp3" preload="auto"></audio>
 <audio id="sound-correct" src="/sounds/correct.mp3" preload="auto"></audio>
 <audio id="sound-end" src="/sounds/end.mp3" preload="auto"></audio>
-
-<style>
-    .next-button {
-        font-size: 2rem;
-        padding: 1rem 2rem;
-        margin-top: 3rem;
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        border-radius: 12px;
-        cursor: pointer;
-    }
-
-        .next-button:hover {
-            background-color: #388e3c;
-        }
-</style>

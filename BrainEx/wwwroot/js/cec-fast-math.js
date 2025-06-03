@@ -136,13 +136,14 @@
     }
 
     function waitForStart() {
-        function startGame() {
-            document.removeEventListener('keydown', startGame);
-            startScreen.classList.add('hidden');
+        const btnStart = document.querySelector(".btn-play-game");
+        if (!btnStart) return;
+
+        btnStart.addEventListener("click", () => {
+            document.querySelector(".vista-cec").classList.add("hidden");
             soundStart.play();
             startCountdown();
-        }
-        document.addEventListener('keydown', startGame);
+        });
     }
 
     waitForStart();

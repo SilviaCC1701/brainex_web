@@ -1,11 +1,9 @@
 ﻿/* === ESTILOS COMPARTIDOS PARA TODOS LOS JUEGOS === */
 
 .game-wrapper {
-    display: flex;
     justify-content: center;
     align-items: center;
     padding: 40px 0;
-    font-family: 'Segoe UI', sans-serif;
 }
 
 .game-wrapper .container {
