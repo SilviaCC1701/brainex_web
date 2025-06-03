@@ -8,7 +8,6 @@
     const resultScreen = document.getElementById("result-screen");
     const countdownEl = document.getElementById("countdown");
     const gameUI = document.getElementById("game-container");
-    const startScreen = document.getElementById("start-screen");
 
     const soundStart = document.getElementById("sound-start");
     const soundCorrect = document.getElementById("sound-correct");
@@ -176,13 +175,14 @@
     }
 
     function waitForStart() {
-        function startGame() {
-            document.removeEventListener('keydown', startGame);
-            startScreen.classList.add('hidden');
+        const btnStart = document.querySelector(".btn-play-game");
+        if (!btnStart) return;
+
+        btnStart.addEventListener("click", () => {
+            document.querySelector(".vista-cec").classList.add("hidden");
             soundStart.play();
             startCountdown();
-        }
-        document.addEventListener('keydown', startGame);
+        });
     }
 
     waitForStart();

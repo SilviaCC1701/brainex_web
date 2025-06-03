@@ -9,6 +9,7 @@
     const startScreen = document.getElementById("start-screen");
 
     const soundCorrect = document.getElementById("sound-correct");
+    const soundStart = document.getElementById("sound-start");
     const soundEnd = document.getElementById("sound-end");
 
     let sequences = [];
@@ -182,12 +183,14 @@
     }
 
     function waitForStart() {
-        function startGame() {
-            document.removeEventListener('keydown', startGame);
-            startScreen.classList.add('hidden');
+        const btnStart = document.querySelector(".btn-play-game");
+        if (!btnStart) return;
+
+        btnStart.addEventListener("click", () => {
+            document.querySelector(".vista-cec").classList.add("hidden");
+            soundStart.play();
             startCountdown();
-        }
-        document.addEventListener('keydown', startGame);
+        });
     }
 
     waitForStart();

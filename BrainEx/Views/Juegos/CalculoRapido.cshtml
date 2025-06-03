@@ -3,13 +3,14 @@
     var gameId = contexto == "Juegos" ? "fast-math-game" : "fast-math-game-cec";
     var esJuegos = contexto == "Juegos";
     ViewData["Title"] = "Calculo Rapido";
+    var dominio = $"{Context.Request.Scheme}://{Context.Request.Host}";
 }
 <div id="@gameId" class="game-wrapper">
     <div class="vista-cec">
         <h2 id="titleCEC">Calculo <span class="addAzulColor">Rápido</span></h2>
         <div class="grupo-enlaces">
             <a class="btn-secondary btn-play-game">Empezar a jugar</a>
-            <p class="descripcion">Resuelve operaciones lo más rápido posible. ¿Que tan ágil eres mentalmente?</p>
+            <p class="descripcion">Pon a prueba tu agilidad mental resolviendo operaciones matemáticas básicas lo más rápido posible. Aparecerán sumas y restas simples que deberás responder.</p>
         </div>
 
         <div class="figurasCSS">
@@ -38,13 +39,13 @@
             @if (esJuegos)
             {
                 <div class="grupo-enlaces">
-                    <a id="ver-resultados-btn" class="btn-secondary btn-play-game">Ver Resultados</a>
+                    <a id="ver-resultados-btn" class="btn-secondary btn-play-game" href="@dominio/Juegos/CalculoRapido/Resultados">Ver Resultados</a>
                 </div>
             }
             else
             {
                 <div class="grupo-enlaces">
-                    <a id="ver-resultados-btn" class="btn-secondary btn-play-game">Ver Resultados</a>
+                    <a id="ver-resultados-btn" class="btn-secondary btn-play-game" href="@dominio/CalcBrainAge/SigueSecuencia">Siguiente Juego</a>
                 </div>
             }
         </div>

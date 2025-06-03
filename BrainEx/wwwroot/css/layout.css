@@ -309,3 +309,6 @@ h1#titulo { font-weight: 900; text-align: center; font-size: 60px; margin-bottom
 /* *-*-*-*-* DETALLES CEC STYLE *-*-*-*-* */
 h3.titleResultados#titulo { font-weight: 900; text-align: center; font-size: 40px; margin-bottom: 0.5rem; }
 
+/* *-*-*-*-* DETALLES JUEGOS *-*-*-*-* */
+.game-wrapper .vista-cec p.descripcion { max-width: 1000px; }
+.game-wrapper .vista-cec h2#titleCEC { max-width: max-content; }
