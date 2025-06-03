@@ -23,11 +23,6 @@ namespace BrainEx.Controllers
             return View(usuarios); // pasa la lista a la vista
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         public IActionResult Login()
         {
             return View();

@@ -2,6 +2,7 @@
     var contexto = ViewData["Contexto"]?.ToString() ?? "Juegos";
     var gameId = contexto == "Juegos" ? "fast-math-game" : "fast-math-game-cec";
     var esJuegos = contexto == "Juegos";
+    ViewData["Title"] = "Calculo Rapido";
 }
 <div id="@gameId" class="game-wrapper">
     <div id="start-screen" class="start-screen">
