@@ -1,6 +1,11 @@
 ﻿@{
-	string proxyUrl = Environment.GetEnvironmentVariable("ApiBaseUrl");
+    string proxyUrl = Environment.GetEnvironmentVariable("ApiBaseUrl");
+    var iconos = new[] { "Circulo.png", "Triangulo.png", "Cuadrado.png", "figuritas.png" };
+    var random = new Random();
+    var iconoSeleccionado = iconos[random.Next(iconos.Length)];
 }
+<link rel="icon" type="image/png" href="/images/@iconoSeleccionado">
+
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="api-base-url" content="@proxyUrl" />
