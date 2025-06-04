@@ -1,11 +1,6 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
     const gameContainer = document.getElementById('complete-operation-game-cec');
     if (!gameContainer) return;
-    const referrer = document.referrer;
-    if (!referrer.includes('/CalcBrainAge/MemoryGame')) {
-        window.location.href = '/CalcBrainAge';
-        return;
-    }
 
     const prevOp = document.getElementById("prev-operation");
     const currOp = document.getElementById("current-operation");
