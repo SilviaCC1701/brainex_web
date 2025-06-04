@@ -9,7 +9,11 @@
     const resultScreen = document.getElementById('result-screen');
     const scoreDisplay = document.getElementById('color-score');
 
-    const colors = ['green', 'red', 'yellow', 'blue'];
+    const soundStart = document.getElementById("sound-start");
+    const soundCorrect = document.getElementById("sound-correct");
+    const soundEnd = document.getElementById("sound-end");
+
+    const colors = ['blue', 'purple', 'green', 'red'];
     let sequence = [];
     let userInput = [];
     let score = 0;
@@ -83,6 +87,7 @@
         }
 
         if (userInput.length === sequence.length) {
+            soundCorrect.play();
             disableInput();
             timesPerRound.push(performance.now() - roundStartTime);
             score = sequence.length;
@@ -102,7 +107,7 @@
 
     function endGame() {
         resultScreen.classList.remove('hidden');
-        //soundEnd.play();
+        soundEnd.play();
 
         const payload = {
             game: "memory_game",
@@ -169,12 +174,14 @@
     }
 
     function waitForStart() {
-        function handleStart() {
-            document.removeEventListener('keydown', handleStart);
-            startScreen.classList.add('hidden');
+        const btnStart = document.querySelector(".btn-play-game");
+        if (!btnStart) return;
+
+        btnStart.addEventListener("click", () => {
+            document.querySelector(".vista-cec").classList.add("hidden");
+            soundStart.play();
             startCountdown();
-        }
-        document.addEventListener('keydown', handleStart);
+        });
     }
 
     waitForStart();

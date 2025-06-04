@@ -8,13 +8,16 @@
     const resultScreen = document.getElementById("result-screen");
     const pegs = Array.from(document.querySelectorAll('.peg'));
 
+    const soundStart = document.getElementById("sound-start");
+    const soundEnd = document.getElementById("sound-end");
+
     const totalDisks = 5;
     let selectedDisk = null;
     let moveCount = 0;
     let startTime;
 
     function setupGame() {
-        const colors = ['#f44336', '#ff9800', '#ffeb3b', '#4caf50', '#2196f3'];
+        const colors = ['#6EB5FF', '#CFA1FF', '#42FF99', '#FFE866', '#FF9E8D'];
         pegs.forEach(peg => peg.innerHTML = '');
         for (let i = 1; i <= totalDisks; i++) {
             const disk = document.createElement('div');
@@ -70,6 +73,7 @@
 
         if (!isWin) return;
 
+        soundEnd.play();
         const totalTime = ((performance.now() - startTime) / 1000).toFixed(2);
         resultScreen.classList.remove('hidden');
 
@@ -141,12 +145,14 @@
     }
 
     function waitForStart() {
-        function handleStart() {
-            document.removeEventListener('keydown', handleStart);
-            startScreen.classList.add('hidden');
+        const btnStart = document.querySelector(".btn-play-game");
+        if (!btnStart) return;
+
+        btnStart.addEventListener("click", () => {
+            document.querySelector(".vista-cec").classList.add("hidden");
+            soundStart.play();
             startCountdown();
-        }
-        document.addEventListener('keydown', handleStart);
+        });
     }
 
     pegs.forEach(peg => {

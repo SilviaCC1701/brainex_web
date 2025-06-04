@@ -69,6 +69,7 @@
             pegs[2].querySelectorAll('.disk').length === totalDisks;
 
         if (isWin) {
+            soundEnd.play();
             const totalTime = ((performance.now() - startTime) / 1000).toFixed(2);
             resultScreen.classList.remove('hidden');
 
@@ -118,12 +119,14 @@
     }
 
     function waitForStart() {
-        function handleStart() {
-            document.removeEventListener('keydown', handleStart);
-            startScreen.classList.add('hidden');
+        const btnStart = document.querySelector(".btn-play-game");
+        if (!btnStart) return;
+
+        btnStart.addEventListener("click", () => {
+            document.querySelector(".vista-cec").classList.add("hidden");
+            soundStart.play();
             startCountdown();
-        }
-        document.addEventListener('keydown', handleStart);
+        });
     }
 
     pegs.forEach(peg => {

@@ -100,19 +100,26 @@ input[type="text"] {
 }
 
 .grid-cell.show {
-    background-color: #4CAF50;
+    background-color: #FFE866;
 }
 
 .grid-cell.correct {
-    background-color: #2ecc71;
+    background-color: ##FFE866 !important;
+    color: #000 !important;
 }
-
+.grid-cell {
+    color: #fff;
+}
 .grid-cell.wrong {
-    background-color: #e74c3c;
+    background-color: #FF9E8D;
 }
-
+.grid-cell.show,
+.grid-cell.correct {
+    color: #000;
+}
 .grid-cell.hidden-number {
-    background-color: #222;
+    background-color: #000;
+    color: #fff;
 }
 .grid-cell.wrong {
     background-color: #e74c3c !important;
@@ -180,7 +187,7 @@ input[type="text"] {
     border-radius: 8px;
     text-align: center;
     line-height: 30px;
-    color: white;
+    color: black;
     font-weight: bold;
     user-select: none;
     transition: transform 0.2s;

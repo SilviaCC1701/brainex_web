@@ -3,13 +3,27 @@
     var esJuegos = contexto == "Juegos";
     var gameId = esJuegos ? "hanoi-game" : "hanoi-game-cec";
     ViewData["Title"] = "Torre Hanoi";
+    var dominio = $"{Context.Request.Scheme}://{Context.Request.Host}";
 }
 <div id="@gameId" class="game-wrapper">
-    <div id="start-screen" class="start-screen">
-        <h2>Presiona cualquier tecla para comenzar</h2>
+    <div class="vista-cec">
+        <h2 id="titleCEC">Torre <span class="addVerdeColor">Hanoi</span></h2>
+        <div class="grupo-enlaces">
+            <a class="btn-secondary btn-play-game">Empezar a jugar</a>
+            <p class="descripcion">Mueve los discos entre las torres respetando las reglas del juego, solo puedes mover un disco menor encima de un disco mayor. Organízalos con el menor número de movimientos posibles usando lógica y planificación.</p>
+        </div>
+
+        <div class="figurasCSS">
+            <span class="figurita cuadradoVerde relleno"></span>
+            <span class="figurita circuloAzul"></span>
+            <span class="figurita trianguloLavanda relleno"></span>
+            <span class="figurita cuadradoVerde"></span>
+            <span class="figurita circuloAzul relleno"></span>
+            <span class="figurita triangleLavanda"></span>
+        </div>
     </div>
 
-    <div id="countdown" class="countdown">3</div>
+    <div id="countdown" class="countdown hidden">3</div>
 
     <div class="container hidden" id="game-container">
         <div class="hanoi-pegs">
@@ -18,37 +32,22 @@
             <div class="peg" data-peg="2"></div>
         </div>
 
-        <div id="result-screen" class="hidden">
-            <h2>¡Completado!</h2>
+        <div id="result-screen" class="hidden vista-cec">
             @if (esJuegos)
             {
-                <div style="text-align: center; margin-top: 30px;">
-                    <a id="ver-resultados-btn" class="btn btn-primary btn-lg" href="#">Ver resultados</a>
+                <div class="grupo-enlaces">
+                    <a id="ver-resultados-btn" class="btn-secondary btn-play-game" href="@dominio/Juegos/TorreHanoi/Resultados">Ver Resultados</a>
                 </div>
             }
             else
             {
-                <div style="text-align: center; margin-top: 30px;">
-                    <a href="/CalcBrainAge/Resultados" class="btn btn-primary btn-lg">Ver resultados</a>
+                <div class="grupo-enlaces">
+                    <a id="ver-resultados-btn" class="btn-secondary btn-play-game" href="@dominio/CalcBrainAge/Resultados">Ver Resultados</a>
                 </div>
             }
         </div>
     </div>
 </div>
 
-<style>
-    .next-button {
-        font-size: 2rem;
-        padding: 1rem 2rem;
-        margin-top: 3rem;
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        border-radius: 12px;
-        cursor: pointer;
-    }
-
-        .next-button:hover {
-            background-color: #388e3c;
-        }
-</style>
+<audio id="sound-start" src="/sounds/start.mp3" preload="auto"></audio>
+<audio id="sound-end" src="/sounds/end.mp3" preload="auto"></audio>

@@ -1,10 +1,11 @@
 ﻿@{
     ViewData["Title"] = "CEC";
+    var dominio = $"{Context.Request.Scheme}://{Context.Request.Host}";
 }
 <div class="vista-cec">
     <h2 id="titleCEC">Calcula tu Edad <span class="addAzulColor">Cerebral</span></h2>
     <div class="grupo-enlaces">
-        <a class="btn-secondary" href="./CalcBrainAge/CalculoRapido">Calcula tu edad cerebral ahora</a>
+        <a class="btn-secondary" href="@dominio/CalcBrainAge/CalculoRapido">Calcula tu edad cerebral ahora</a>
         <p class="descripcion">Pon a prueba tu cerebro con una serie de mini-juegos y averigua tu edad cerebral</p>
     </div>
 

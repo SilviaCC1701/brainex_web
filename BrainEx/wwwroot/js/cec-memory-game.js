@@ -7,9 +7,12 @@
     const gameUI = document.getElementById('game-container');
     let tiles = Array.from(document.querySelectorAll('.color-tile'));
     const resultScreen = document.getElementById('result-screen');
+
+    const soundStart = document.getElementById("sound-start");
+    const soundCorrect = document.getElementById("sound-correct");
     const soundEnd = document.getElementById("sound-end");
 
-    const colors = ['green', 'red', 'yellow', 'blue'];
+    const colors = ['blue', 'purple', 'green', 'red'];
     let sequence = [];
     let userInput = [];
     let score = 0;
@@ -83,6 +86,7 @@
         }
 
         if (userInput.length === sequence.length) {
+            soundCorrect.play();
             disableInput();
             timesPerRound.push(performance.now() - roundStartTime);
             score = sequence.length;
@@ -144,12 +148,14 @@
     }
 
     function waitForStart() {
-        function handleStart() {
-            document.removeEventListener('keydown', handleStart);
-            startScreen.classList.add('hidden');
+        const btnStart = document.querySelector(".btn-play-game");
+        if (!btnStart) return;
+
+        btnStart.addEventListener("click", () => {
+            document.querySelector(".vista-cec").classList.add("hidden");
+            soundStart.play();
             startCountdown();
-        }
-        document.addEventListener('keydown', handleStart);
+        });
     }
 
     waitForStart();

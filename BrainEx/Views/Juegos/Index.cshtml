@@ -1,32 +1,33 @@
 ﻿@{
     ViewData["Title"] = "Juegos";
+    var dominio = $"{Context.Request.Scheme}://{Context.Request.Host}";
 }
 <h2 id="titleJuegos">Catálogo de <span class="addLavandaColor">Juegos</span></h2>
 <div class="vista-lista-juegos">
     <section class="card-container">
         <div class="card calcRapido">
             <div class="card-img"><img src="~/images/juegosIcons/CalculoRapido.png" /></div>
-            <a class="btn-secondary" href="./Juegos/CalculoRapido">Calculo Rápido</a>
+            <a class="btn-secondary" href="@dominio/Juegos/CalculoRapido">Calculo Rápido</a>
         </div>
         <div class="card completaOp">
             <div class="card-img"><img src="~/images/juegosIcons/CompletaOperacion.png" /></div>
-            <a class="btn-secondary" href="./Juegos/CompletaOperacion">Completa Operación</a>
+            <a class="btn-secondary" href="@dominio/Juegos/CompletaOperacion">Completa Operación</a>
         </div>
         <div class="card findPatron">
             <div class="card-img"><img src="~/images/juegosIcons/EncuentraPatron2.png" /></div>
-            <a class="btn-secondary" href="./Juegos/EncuentraPatron">Encuentra Patrón</a>
+            <a class="btn-secondary" href="@dominio/Juegos/EncuentraPatron">Encuentra Patrón</a>
         </div>
         <div class="card keepSequence">
             <div class="card-img"><img src="~/images/juegosIcons/SigueSecuencia.png" /></div>
-            <a class="btn-secondary" href="./Juegos/SigueSecuencia">Sigue Secuencia</a>
+            <a class="btn-secondary" href="@dominio/Juegos/SigueSecuencia">Sigue Secuencia</a>
         </div>
         <div class="card memoGame">
             <div class="card-img"><img src="~/images/juegosIcons/MemoryGame.png" /></div>
-            <a class="btn-secondary" href="./Juegos/MemoryGame">Memory Game</a>
+            <a class="btn-secondary" href="@dominio/Juegos/MemoryGame">Memory Game</a>
         </div>
         <div class="card hanoiTower">
             <div class="card-img"><img src="~/images/juegosIcons/TorreHanoi.png" /></div>
-            <a class="btn-secondary" href="./Juegos/TorreHanoi">Torre Hanoi</a>
+            <a class="btn-secondary" href="@dominio/Juegos/TorreHanoi">Torre Hanoi</a>
         </div>
     </section>
 </div>

@@ -10,7 +10,7 @@
     const scoreDisplay = document.getElementById("score");
 
     const soundCorrect = document.getElementById("sound-correct");
-    const soundError = document.getElementById("sound-error");
+    const soundStart = document.getElementById("sound-start");
     const soundEnd = document.getElementById("sound-end");
 
     let sequence = [];
@@ -132,7 +132,6 @@
             score--;
             attemptsPerRound[round]++;
             roundPerfectFlags[round] = false;
-            soundError.play();
             disableInput();
             showRedX();
             setTimeout(() => {
@@ -147,6 +146,7 @@
 
         if (userSequence.length === sequence.length) {
             score++;
+            soundCorrect.play();
             const timeTaken = performance.now() - roundStartTime;
             timesPerRound.push(timeTaken);
             disableInput();
@@ -167,7 +167,7 @@
     }
 
     function endGame() {
-        grid.innerHTML = '';
+        //grid.innerHTML = '';
         resultScreen.classList.remove('hidden');
         soundEnd.play();
 
@@ -214,12 +214,14 @@
     }
 
     function waitForStart() {
-        function startGame() {
-            document.removeEventListener('keydown', startGame);
-            startScreen.classList.add('hidden');
+        const btnStart = document.querySelector(".btn-play-game");
+        if (!btnStart) return;
+
+        btnStart.addEventListener("click", () => {
+            document.querySelector(".vista-cec").classList.add("hidden");
+            soundStart.play();
             startCountdown();
-        }
-        document.addEventListener('keydown', startGame);
+        });
     }
 
     waitForStart();

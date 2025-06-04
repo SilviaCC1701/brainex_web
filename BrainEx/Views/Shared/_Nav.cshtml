@@ -1,4 +1,7 @@
-﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+﻿@{
+    var dominio = $"{Context.Request.Scheme}://{Context.Request.Host}";
+}
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
     <div class="container-fluid">
 
         <!-- Cambiar por un logo pequeño -->
@@ -19,10 +22,10 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <li class="nav-item">
-                        <a class="nav-link btn-secondary btn-perfil" href="https://tfg-BrainEx.com/Perfil">Perfil</a>
+                        <a class="nav-link btn-secondary btn-perfil" href="@dominio/Perfil">Perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn-secondary btn-logout" href="https://tfg-BrainEx.com/Cuenta/Logout">Cerrar Sesión</a>
+                        <a class="nav-link btn-secondary btn-logout" href="@dominio/Cuenta/Logout">Cerrar Sesión</a>
                     </li>
                 }
                 else

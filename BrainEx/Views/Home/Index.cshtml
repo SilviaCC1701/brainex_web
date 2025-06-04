@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<BrainEx.Models.User>
 @{
     ViewData["Title"] = "Home";
+    var dominio = $"{Context.Request.Scheme}://{Context.Request.Host}";
 }
 
 <div class="vista-home">
@@ -9,11 +10,11 @@
     <section class="card-container">
         <div class="card calcBrainAge">
             <div class="card-img"><img src="~/images/cerebroSeleccion.png" /></div>
-            <a class="btn-secondary" href="./CalcBrainAge">Calcula tu edad cerebral</a>
+            <a class="btn-secondary" href="@dominio/CalcBrainAge">Calcula tu edad cerebral</a>
         </div>
         <div class="card juegos">
             <div class="card-img"><img src="~/images/figuritas.png" /></div>
-            <a class="btn-secondary" href="./Juegos">Catálogo de juegos</a>
+            <a class="btn-secondary" href="@dominio/Juegos">Catálogo de juegos</a>
         </div>
         <div class="card explicacion">
             <div class="card-img"><img src="~/images/Documento.png" /></div>
