@@ -69,7 +69,7 @@
             .map(n => `<span class='seq-num'>${n}</span>`)
             .join(" <span class='arrow'>→</span> ");
 
-        sequenceDisplay.innerHTML = `${sequenceHTML} <span class='arrow'>→</span> <input type='text' id='answer-input' maxlength='3' style='font-size: 1.8rem; width: 80px; text-align: center; padding: 5px;' autofocus />`;
+        sequenceDisplay.innerHTML = `${sequenceHTML} <span class='arrow'>→</span> <input type='number' id='answer-input' maxlength='3' style='font-size: 1.8rem; width: 80px; text-align: center; padding: 5px;' autofocus />`;
 
         const newInput = document.getElementById("answer-input");
         newInput.value = '';

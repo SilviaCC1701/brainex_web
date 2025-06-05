@@ -23,4 +23,14 @@
     <None Include="wwwroot\images\figuritas.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Documentacion\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\Documentacion\BrainEx_SilviaCCh.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
