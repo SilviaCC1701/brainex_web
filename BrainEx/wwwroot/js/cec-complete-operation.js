@@ -57,7 +57,7 @@
         const opParts = operations[index].display.split('[?]');
         currOp.innerHTML = `
             ${opParts[0]}
-            <input type="number" id="answer-input" maxlength="2" autofocus style="font-size: 2.5rem; width: 60px; text-align: center; padding: 5px;" />
+            <input type="text" id="answer-input" maxlength="2" autofocus style="font-size: 2.5rem; width: 60px; text-align: center; padding: 5px;" />
             ${opParts[1]}
         `;
 
