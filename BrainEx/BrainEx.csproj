@@ -27,10 +27,4 @@
     <Folder Include="wwwroot\Documentacion\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="wwwroot\Documentacion\BrainEx_SilviaCCh.pdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>
