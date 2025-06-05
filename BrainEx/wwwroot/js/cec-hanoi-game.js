@@ -8,6 +8,9 @@
     const resultScreen = document.getElementById("result-screen");
     const pegs = Array.from(document.querySelectorAll('.peg'));
 
+    const soundStart = document.getElementById("sound-start");
+    const soundEnd = document.getElementById("sound-end");
+
     const totalDisks = 5;
     let selectedDisk = null;
     let moveCount = 0;
