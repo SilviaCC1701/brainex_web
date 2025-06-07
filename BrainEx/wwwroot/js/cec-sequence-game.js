@@ -170,6 +170,7 @@
         //grid.innerHTML = '';
         resultScreen.classList.remove('hidden');
         soundEnd.play();
+        lanzarConfetiDesdeEsquinas();
 
         const payload = {
             game: "sigue_secuencia",

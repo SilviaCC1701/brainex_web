@@ -57,6 +57,7 @@
     function endGame() {
         resultScreen.classList.remove("hidden");
         soundEnd.play();
+        lanzarConfetiDesdeEsquinas();
 
         const times = timesPerOp.map(t => +(t / 1000).toFixed(3));
 

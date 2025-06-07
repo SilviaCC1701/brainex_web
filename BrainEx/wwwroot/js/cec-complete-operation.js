@@ -105,6 +105,7 @@
         if (input) input.style.display = 'none';
         resultScreen.classList.remove('hidden');
         soundEnd.play();
+        lanzarConfetiDesdeEsquinas();
 
         const payload = {
             game: "completa_operacion",

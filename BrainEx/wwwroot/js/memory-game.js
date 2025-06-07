@@ -108,6 +108,7 @@
     function endGame() {
         resultScreen.classList.remove('hidden');
         soundEnd.play();
+        lanzarConfetiDesdeEsquinas();
 
         const payload = {
             game: "memory_game",

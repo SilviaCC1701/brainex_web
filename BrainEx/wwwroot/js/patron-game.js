@@ -115,6 +115,7 @@
         if (input) input.style.display = 'none';
         resultScreen.classList.remove('hidden');
         soundEnd.play();
+        lanzarConfetiDesdeEsquinas();
 
         const payload = {
             game: "encuentra_patron",

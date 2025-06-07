@@ -73,6 +73,7 @@
 
         if (isWin) {
             soundEnd.play();
+            lanzarConfetiDesdeEsquinas();
             const totalTime = ((performance.now() - startTime) / 1000).toFixed(2);
             resultScreen.classList.remove('hidden');
 
