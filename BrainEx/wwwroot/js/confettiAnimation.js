@@ -14,8 +14,8 @@
     confettiInstance({
         particleCount: 150,
         spread: 120,
-        angle: 60,
-        origin: { x: 0, y: 1 },
+        angle: 225,
+        origin: { x: 1, y: 0 },
         startVelocity: 60,
         scalar: 1.5
     });
@@ -24,8 +24,8 @@
     confettiInstance({
         particleCount: 150,
         spread: 120,
-        angle: 120,
-        origin: { x: 1, y: 1 },
+        angle: 315,
+        origin: { x: 0, y: 0 },
         startVelocity: 60,
         scalar: 1.5
     });

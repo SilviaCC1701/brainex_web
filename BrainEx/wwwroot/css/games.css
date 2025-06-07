@@ -238,3 +238,14 @@ canvas {
     border-radius: 10px;
     box-shadow: 0 2px 12px rgba(0,0,0,0.1);
 }
+
+.confetti-canvas {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    background: transparent;
+}
