@@ -23,8 +23,4 @@
     <None Include="wwwroot\images\figuritas.png" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\Documentacion\" />
-  </ItemGroup>
-
 </Project>

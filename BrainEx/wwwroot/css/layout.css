@@ -192,7 +192,7 @@ header ul.navbar-nav a.btn-logout { color: var(--negro); background-color: var(-
 .vista-home .card.juegos .btn-secondary:hover { background-color: var(--lavanda); }
 .vista-home .card.explicacion .btn-secondary:hover { background-color: var(--verde_menta); }
 /* === Botón de grupo-enlaces === */
-.vista-home .grupo-enlaces { display: flex; justify-content: center; gap: 50px; }
+.vista-home .grupo-enlaces { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem;}
 .vista-home .grupo-enlaces .btn-secondary{ background-color: var(--azul-marino); color: var(--blanco) ;border: none; border-radius: 0.5rem; padding: 0.6rem 1.2rem; font-size: 1.25rem; cursor: pointer; transition: filter 0.3s;}
 
 
